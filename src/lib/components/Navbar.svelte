@@ -60,7 +60,7 @@
 								</p>
 							</a>
 						</div>
-						<div
+						<!-- <div
 							class="transition-transform duration-100 motion-safe:hover:scale-97 motion-safe:active:scale-92"
 						>
 							<a
@@ -95,7 +95,7 @@
 									Blog
 								</p>
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="flex items-center justify-end space-x-4">
