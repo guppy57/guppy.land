@@ -37,34 +37,7 @@
 					<div class="mr-1.5 -ml-2 block h-auto w-9">
 						<img alt="Guppy.land Icon" src={logo} />
 					</div>
-					<div class="hidden h-auto w-24 xl:block">
-						<svg
-							width="100%"
-							height="100%"
-							viewBox="0 0 82 28"
-							version="1.1"
-							xmlns="http://www.w3.org/2000/svg"
-							xmlns:xlink="http://www.w3.org/1999/xlink"
-						>
-							<title>GUPPY</title>
-							<g
-								id="Explorations"
-								stroke="none"
-								stroke-width="1"
-								fill="none"
-								fill-rule="evenodd"
-								font-family="AdvercaseDemo-Bold, Advercase Demo"
-								font-size="24"
-								font-weight="bold"
-							>
-								<g id="Frame" transform="translate(-35, -5)" fill="#000000">
-									<text id="GUPPY">
-										<tspan x="36" y="29">GUPPY</tspan>
-									</text>
-								</g>
-							</g>
-						</svg>
-					</div>
+          <p class="font-family-advercase hidden text-2xl xl:block">GUPPY</p>
 				</div>
 			</a>
 			<div class="nav-width">
