@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
@@ -70,7 +71,8 @@ export async function getStaticProps(
   }>,
 ) {
   const { slug } = ctx.params!;
-  const postFile = fs.readFileSync(`posts/${slug}.mdx`, "utf-8");
+  const postsDirectory = path.join(process.cwd(), 'posts');
+  const postFile = fs.readFileSync(path.join(postsDirectory, `${slug}.mdx`), "utf-8");
   const mdxSource = await serialize(postFile, { parseFrontmatter: true });
 
   return {
