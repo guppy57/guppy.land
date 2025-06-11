@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'ComingSoon-Regular';
+  src: url(./ComingSoon-Regular.eot);
+  src: url(./ComingSoon-Regular.eot?#iefix) format('embedded-opentype'),
+       url(./ComingSoon-Regular.otf) format('otf'),
+       url(./ComingSoon-Regular.woff) format('woff'),
+       url(./ComingSoon-Regular.woff2) format('woff2'),
+       url(./ComingSoon-Regular.svg#ComingSoon-Regular) format('svg');
+}

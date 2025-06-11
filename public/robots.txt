@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kreativeusa.com
+
+# Sitemaps
+Sitemap: https://kreativeusa.com/sitemap.xml
