@@ -66,6 +66,24 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: true,
+  // Add this section to ensure posts are included in production
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.module.rules.push({
+        test: /\.mdx?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'posts/',
+            },
+          },
+        ],
+      });
+    }
+    return config;
+  },
 };
 
 // Injected content via Sentry wizard below

@@ -74,5 +74,8 @@
     "typescript": "5.1.6",
     "vaul": "^1.1.0",
     "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0"
   }
 }

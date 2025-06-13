@@ -39,7 +39,7 @@ export default function Articles({
           <div>Notes and Articles 📝</div>
         </h1>
         <p className="font-comingSoon text-lg max-w-5xl mb-12">
-          Hello, my name is Armaan Gupta but I go by “Guppy.” I&apos;m the
+          Hello, my name is Armaan Gupta but I go by "Guppy." I&apos;m the
           founder of Kreative and whenever I find something useful to share,
           I&apos;ll put it here for you to read.{" "}
           <Link
@@ -128,70 +128,89 @@ export default function Articles({
 }
 
 export async function getStaticProps() {
-  // get all MDX files
-  const postFilePaths = fs.readdirSync("posts").filter((postFilePath) => {
-    return path.extname(postFilePath).toLowerCase() === ".mdx";
-  });
-
-  const postPreviews: PostPreview[] = [];
-
-  // read the frontmatter for each file
-  for (const postFilePath of postFilePaths) {
-    const postFile = fs.readFileSync(`posts/${postFilePath}`, "utf8");
-
-    // serialize the MDX content to a React-compatible format
-    // and parse the frontmatter
-    const serializedPost = await serialize(postFile, {
-      parseFrontmatter: true,
+  const postsDirectory = path.join(process.cwd(), 'posts');
+  
+  try {
+    // get all MDX files
+    const postFilePaths = fs.readdirSync(postsDirectory).filter((postFilePath) => {
+      return path.extname(postFilePath).toLowerCase() === ".mdx";
     });
 
-    postPreviews.push({
-      ...serializedPost.frontmatter,
-      // add the slug to the frontmatter info
-      slug: "articles/" + postFilePath.replace(".mdx", ""),
-    } as PostPreview);
-  }
+    const postPreviews: PostPreview[] = [];
 
-  const postPreviewsSorted = postPreviews.sort((a, b) => {
-    return (
-      new Date(b.publishingDate).getTime() -
-      new Date(a.publishingDate).getTime()
+    // read the frontmatter for each file
+    for (const postFilePath of postFilePaths) {
+      const fullPath = path.join(postsDirectory, postFilePath);
+      const postFile = fs.readFileSync(fullPath, "utf8");
+
+      // serialize the MDX content to a React-compatible format
+      // and parse the frontmatter
+      const serializedPost = await serialize(postFile, {
+        parseFrontmatter: true,
+      });
+
+      postPreviews.push({
+        ...serializedPost.frontmatter,
+        // add the slug to the frontmatter info
+        slug: "articles/" + postFilePath.replace(".mdx", ""),
+      } as PostPreview);
+    }
+
+    const postPreviewsSorted = postPreviews.sort((a, b) => {
+      return (
+        new Date(b.publishingDate).getTime() -
+        new Date(a.publishingDate).getTime()
+      );
+    });
+
+    const col1 = postPreviewsSorted.slice(
+      0,
+      Math.ceil(postPreviewsSorted.length / 3)
     );
-  });
+    const col2 = postPreviewsSorted.slice(
+      Math.ceil(postPreviewsSorted.length / 3),
+      Math.ceil((postPreviewsSorted.length / 3) * 2)
+    );
+    const col3 = postPreviewsSorted.slice(
+      Math.ceil((postPreviewsSorted.length / 3) * 2)
+    );
 
-  const col1 = postPreviewsSorted.slice(
-    0,
-    Math.ceil(postPreviewsSorted.length / 3)
-  );
-  const col2 = postPreviewsSorted.slice(
-    Math.ceil(postPreviewsSorted.length / 3),
-    Math.ceil((postPreviewsSorted.length / 3) * 2)
-  );
-  const col3 = postPreviewsSorted.slice(
-    Math.ceil((postPreviewsSorted.length / 3) * 2)
-  );
+    const mobileCol1 = postPreviewsSorted.slice(
+      0,
+      Math.ceil(postPreviewsSorted.length / 2)
+    );
 
-  const mobileCol1 = postPreviewsSorted.slice(
-    0,
-    Math.ceil(postPreviewsSorted.length / 2)
-  );
+    const mobileCol2 = postPreviewsSorted.slice(
+      Math.ceil(postPreviewsSorted.length / 2)
+    );
 
-  const mobileCol2 = postPreviewsSorted.slice(
-    Math.ceil(postPreviewsSorted.length / 2)
-  );
-
-  return {
-    props: {
-      count: postPreviews.length,
-      postPreviews: {
-        col1,
-        col2,
-        col3,
-        mobileCol1,
-        mobileCol2,
+    return {
+      props: {
+        count: postPreviews.length,
+        postPreviews: {
+          col1,
+          col2,
+          col3,
+          mobileCol1,
+          mobileCol2,
+        },
       },
-    },
-    // enable ISR
-    revalidate: 60,
-  };
+      // enable ISR
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error(`Error reading MDX files: ${error}`);
+    return {
+      props: {
+        count: 0,
+        postPreviews: {
+          col1: [],
+          col2: [],
+          col3: [],
+          mobileCol1: [],
+          mobileCol2: [],
+        },
+      },
+    };
+  }
 }

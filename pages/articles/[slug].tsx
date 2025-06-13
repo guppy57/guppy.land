@@ -3,7 +3,6 @@ import path from "path";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
-import Head from "next/head";
 import React from "react";
 import Navbar from "@/components/Navbar";
 import ContainerWide from "@/components/ContainerWide";
@@ -61,8 +60,23 @@ export default function PostPage({
     </div>
   );
 }
+
 export async function getStaticPaths() {
-  return { paths: [], fallback: "blocking" };
+  const postsDirectory = path.join(process.cwd(), 'posts');
+  const filenames = fs.readdirSync(postsDirectory);
+  
+  const paths = filenames
+    .filter(filename => filename.endsWith('.mdx'))
+    .map(filename => ({
+      params: {
+        slug: filename.replace(/\.mdx$/, ''),
+      },
+    }));
+
+  return {
+    paths,
+    fallback: false,
+  };
 }
 
 export async function getStaticProps(
@@ -72,12 +86,21 @@ export async function getStaticProps(
 ) {
   const { slug } = ctx.params!;
   const postsDirectory = path.join(process.cwd(), 'posts');
-  const postFile = fs.readFileSync(path.join(postsDirectory, `${slug}.mdx`), "utf-8");
-  const mdxSource = await serialize(postFile, { parseFrontmatter: true });
+  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+  
+  try {
+    const postFile = fs.readFileSync(fullPath, "utf-8");
+    const mdxSource = await serialize(postFile, { parseFrontmatter: true });
 
-  return {
-    props: {
-      source: mdxSource,
-    },
-  };
+    return {
+      props: {
+        source: mdxSource,
+      },
+    };
+  } catch (error) {
+    console.error(`Error reading MDX file: ${error}`);
+    return {
+      notFound: true,
+    };
+  }
 }
