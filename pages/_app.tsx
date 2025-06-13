@@ -155,7 +155,7 @@ const satoshi = localFont({
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const canonicalUrl = (
-    `https://kreativeusa.com` + (router.asPath === "/" ? "" : router.asPath)
+    `https://guppy.land` + (router.asPath === "/" ? "" : router.asPath)
   ).split("?")[0];
 
   return (
@@ -164,9 +164,9 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       <DefaultSeo
         title={undefined}
-        titleTemplate="%s | Kreative"
-        defaultTitle="Kreative"
-        description="Projects, products, and services by to aid the human condition."
+        titleTemplate="%s | Armaan Gupta"
+        defaultTitle="Guppy"
+        description="Software engineer, Christian apologist, and designer."
         canonical={canonicalUrl}
         additionalLinkTags={[
           {
@@ -209,16 +209,16 @@ export default function App({ Component, pageProps }: AppProps) {
           },
         ]}
         openGraph={{
-          url: "https://kreativeusa.com/",
-          title: "Kreative",
+          url: "https://guppy.land/",
+          title: "Armaan 'Guppy' Gupta",
           description:
-            "Projects, products, and services by to aid the human condition.",
+            "Software engineer, Christian apologist, and designer.",
           images: [
             {
-              url: "/images/kreative-mark.png",
+              url: "/GUPPY-icon.png",
               width: 972,
               height: 972,
-              alt: "Kreative Retro Logo",
+              alt: "Guppy's Animated Headshot",
             },
           ],
         }}
