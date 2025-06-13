@@ -4,20 +4,30 @@ import {
   Eyes,
   Sun,
   SealCheck,
+  CalendarBlank,
 } from "@phosphor-icons/react/dist/ssr";
 
 interface IStatusBadgeProps {
-  status: string;
+  status?: string;
+  text?: string;
   className?: string;
 }
 
 export default function StatusBadge(props: IStatusBadgeProps) {
-  const statuses = ["active", "inactive", "coming-soon", "completed"];
   const containerStyle =
     "text-xs font-semibold text-black px-2 py-1 rounded-full font-departureMono tracking-tighter border border-gray-200/50 bg-white";
 
-  if (!statuses.includes(props.status)) {
+  if (props.status === undefined && props.text === undefined) {
     return null;
+  }
+
+  if (props.text !== undefined) {
+    return (
+      <span className={cn(containerStyle, props.className)}>
+        <CalendarBlank weight="bold" className="h-4 w-4 inline-block mr-0.5" />
+        {props.text}
+      </span>
+    ); 
   }
 
   if (props.status === "coming-soon") {

@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export const formatDate = (date: string) => {
   const options = {
     year: "numeric" as const,
-    month: "long" as const,
+    month: "short" as const,
     day: "numeric" as const,
   };
   return new Date(date).toLocaleDateString(undefined, options);

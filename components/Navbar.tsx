@@ -10,6 +10,7 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer"
 import { Button } from "./ui/button";
+import { useEffect, useState } from "react";
 
 interface NavbarProps {
   activeLink: string;
@@ -71,9 +72,25 @@ function MobileNavLink(props: LinkProps) {
 }
 
 export default function Navbar(props: NavbarProps) {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 15);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <Drawer>
-      <nav className="sticky top-0 pt-5 md:pt-4 pb-4 md:pb-4 z-50 bg-[#FFFFFD] bg-opacity-90 backdrop-blur-md">
+      <nav className={cn(
+        "sticky top-0 pt-5 md:pt-4 pb-4 md:pb-4 z-50 transition-all duration-300",
+        isScrolled 
+          ? "bg-[#FFFFFD] bg-opacity-90 backdrop-blur-md" 
+          : "bg-[#F7F7F2]"
+      )}>
         <ContainerWide className="flex items-center justify-between">
           <Link href="/" className="flex items-center justify-start gap-1">
             <Image
@@ -138,6 +155,7 @@ export default function Navbar(props: NavbarProps) {
             </div>
             <Button
               className="py-5 px-6 flex items-center justify-center gap-2 text-md bg-[#FF7C00] hover:bg-[#ff983f] shadow-[0_2px_5px_0_rgba(0,0,0,0.25),0_-3px_6px_-2px_rgba(0,0,0,0.67)_inset] transition-all duration-200 hover:scale-105"
+              onClick={() => window.open('mailto:armaan@guppy.im', '_self')}
             >
               Drop a line
             </Button>

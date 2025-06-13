@@ -52,7 +52,7 @@ export default function Home({ kreations }: HomeProps) {
   }, [kreations, tag]);
 
   return (
-    <div className="relative">
+    <div className="relative bg-[#F7F7F2]">
       <NextSeo title="Home" description="Radical starts here." />
       <Navbar activeLink="home" />
       <ContainerWide className="pt-4 pb-[16rem] sm:pb-[20rem] lg:pb-[36rem] min-h-screen">
@@ -103,7 +103,7 @@ export default function Home({ kreations }: HomeProps) {
                         transition: { duration: 0.5, delay: 0.1 + index * 0.1 },
                       }}
                       exit={{ opacity: 0, y: 5, transition: { duration: 0.1 } }}
-                      className="p-6 bg-[#F7F7F2] rounded-2xl xs:max-h-[32rem] cursor-pointer relative h-full"
+                      className="p-6 bg-[#eeeee2] rounded-2xl xs:max-h-[32rem] cursor-pointer relative h-full"
                       onClick={() => {
                         setSelectedKreation(kreation);
                         setOpen(true);

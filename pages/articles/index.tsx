@@ -18,39 +18,13 @@ export default function Articles({
   count,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <div className="relative">
+    <div className="relative min-h-screen bg-[#F7F7F2]">
       <NextSeo
-        title="Guppy's Notes and Articles"
+        title="Articles"
         description="Useful writings on topics that keep me occupied."
       />
       <Navbar activeLink="articles" />
       <ContainerWide className="mt-16 pb-[16rem] sm:pb-[20rem] lg:pb-[36rem]">
-        <h1 className="text-4xl sm:text-5xl font-comingSoon block md:flex items-center justify-start mb-6">
-          <div className="flex items-center justify-start pb-4 md:pb-0">
-            <span className="mr-3">Guppy&apos;s</span>
-            <Image
-              className="w-16 h-16 -rotate-6 mr-3"
-              src="/guppy-headshot 1.png"
-              alt="Guppy Headshot"
-              width={100}
-              height={100}
-            />
-          </div>
-          <div>Notes and Articles 📝</div>
-        </h1>
-        <p className="font-comingSoon text-lg max-w-5xl mb-12">
-          Hello, my name is Armaan Gupta but I go by "Guppy." I&apos;m the
-          founder of Kreative and whenever I find something useful to share,
-          I&apos;ll put it here for you to read.{" "}
-          <Link
-            className="opacity-70 underline hover:opacity-100"
-            href="https://guppy57.com"
-            target="_blank"
-          >
-            Feel free to read more about me here.
-          </Link>
-        </p>
-        <hr className="border-t-2 border-gray-200 mb-12" />
         {count === 0 ? (
           <div className="pt-12 pb-72">
             <h2 className="text-2xl font-comingSoon mb-4">
@@ -67,7 +41,7 @@ export default function Articles({
               {postPreviews.col1.map((postPreview, i: number) => {
                 return (
                   <div key={i}>
-                    <PostCard postPreview={postPreview} count={i} key={i} />
+                      <PostCard postPreview={postPreview} count={i} key={i} />
                   </div>
                 );
               })}
