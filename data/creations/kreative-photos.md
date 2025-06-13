@@ -5,7 +5,7 @@ description: Simple image hosting for Kreative ID accounts.
 email: hello@kreativeusa.com
 founding_year: 2020
 status: active
-tagsur
+tags:
   - web
   - utility
 created_at: '2024-10-09T15:41:14Z'

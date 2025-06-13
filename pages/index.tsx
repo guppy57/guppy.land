@@ -55,7 +55,7 @@ export default function Home({ kreations }: HomeProps) {
     <div className="relative">
       <NextSeo title="Home" description="Radical starts here." />
       <Navbar activeLink="home" />
-      <ContainerWide className="pt-4 pb-[16rem] sm:pb-[20rem] lg:pb-[36rem]">
+      <ContainerWide className="pt-4 pb-[16rem] sm:pb-[20rem] lg:pb-[36rem] min-h-screen">
         <div className="flex items-center justify-end md:justify-between mb-2 sm:mb-6">
           <div className="space-x-4 hidden md:flex items-center justify-start flex-wrap">
             <span
@@ -82,7 +82,7 @@ export default function Home({ kreations }: HomeProps) {
           </div>
           <p className="font-departureMono text-sm tracking-tighter text-gray-400">
             {filteredKreations.length}{" "}
-            {filteredKreations.length === 1 ? "kreation" : "kreations"}
+            {filteredKreations.length === 1 ? "creation" : "creations"}
           </p>
         </div>
         <div className={"hidden sm:block"}>
@@ -172,7 +172,7 @@ export default function Home({ kreations }: HomeProps) {
                       }}
                       size="sm"
                     >
-                      Visit Kreation
+                      Visit creation
                     </Button>
                   </div>
                 </DialogHeader>

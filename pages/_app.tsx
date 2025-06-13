@@ -160,7 +160,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <div
-      className={`${satoshi.variable} ${departureMono.variable} ${comingSoon.variable}`}
+      className={`${satoshi.variable} ${departureMono.variable} ${comingSoon.variable} min-h-screen`}
     >
       <DefaultSeo
         title={undefined}
