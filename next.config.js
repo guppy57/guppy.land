@@ -67,21 +67,20 @@ const nextConfig = {
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: true,
   // Add this section to ensure posts are included in production
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.module.rules.push({
-        test: /\.mdx?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'posts/',
-            },
+  webpack: (config) => {
+    // Add rule for MDX files
+    config.module.rules.push({
+      test: /\.mdx?$/,
+      use: [
+        {
+          loader: '@mdx-js/loader',
+          options: {
+            providerImportSource: '@mdx-js/react',
           },
-        ],
-      });
-    }
+        },
+      ],
+    });
+
     return config;
   },
 };

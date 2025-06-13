@@ -128,89 +128,71 @@ export default function Articles({
 }
 
 export async function getStaticProps() {
-  const postsDirectory = path.join(process.cwd(), 'posts');
-  
-  try {
-    // get all MDX files
-    const postFilePaths = fs.readdirSync(postsDirectory).filter((postFilePath) => {
-      return path.extname(postFilePath).toLowerCase() === ".mdx";
+  const postsDirectory = path.join(process.cwd(), 'data/posts');
+  const postFilePaths = fs.readdirSync(postsDirectory).filter((postFilePath) => {
+    return /\.mdx?$/.test(postFilePath);
+  });
+
+  const postPreviews: PostPreview[] = [];
+
+  // read the frontmatter for each file
+  for (const postFilePath of postFilePaths) {
+    const fullPath = path.join(postsDirectory, postFilePath);
+    const postFile = fs.readFileSync(fullPath, "utf8");
+
+    // serialize the MDX content to a React-compatible format
+    // and parse the frontmatter
+    const serializedPost = await serialize(postFile, {
+      parseFrontmatter: true,
     });
 
-    const postPreviews: PostPreview[] = [];
-
-    // read the frontmatter for each file
-    for (const postFilePath of postFilePaths) {
-      const fullPath = path.join(postsDirectory, postFilePath);
-      const postFile = fs.readFileSync(fullPath, "utf8");
-
-      // serialize the MDX content to a React-compatible format
-      // and parse the frontmatter
-      const serializedPost = await serialize(postFile, {
-        parseFrontmatter: true,
-      });
-
-      postPreviews.push({
-        ...serializedPost.frontmatter,
-        // add the slug to the frontmatter info
-        slug: "articles/" + postFilePath.replace(".mdx", ""),
-      } as PostPreview);
-    }
-
-    const postPreviewsSorted = postPreviews.sort((a, b) => {
-      return (
-        new Date(b.publishingDate).getTime() -
-        new Date(a.publishingDate).getTime()
-      );
-    });
-
-    const col1 = postPreviewsSorted.slice(
-      0,
-      Math.ceil(postPreviewsSorted.length / 3)
-    );
-    const col2 = postPreviewsSorted.slice(
-      Math.ceil(postPreviewsSorted.length / 3),
-      Math.ceil((postPreviewsSorted.length / 3) * 2)
-    );
-    const col3 = postPreviewsSorted.slice(
-      Math.ceil((postPreviewsSorted.length / 3) * 2)
-    );
-
-    const mobileCol1 = postPreviewsSorted.slice(
-      0,
-      Math.ceil(postPreviewsSorted.length / 2)
-    );
-
-    const mobileCol2 = postPreviewsSorted.slice(
-      Math.ceil(postPreviewsSorted.length / 2)
-    );
-
-    return {
-      props: {
-        count: postPreviews.length,
-        postPreviews: {
-          col1,
-          col2,
-          col3,
-          mobileCol1,
-          mobileCol2,
-        },
-      },
-      // enable ISR
-      revalidate: 60,
-    };
-  } catch (error) {
-    console.error(`Error reading MDX files: ${error}`);
-    return {
-      props: {
-        count: 0,
-        postPreviews: {
-          col1: [],
-          col2: [],
-          col3: [],
-          mobileCol1: [],
-          mobileCol2: [],
-        },
-      },
-    };
+    postPreviews.push({
+      ...serializedPost.frontmatter,
+      // add the slug to the frontmatter info
+      slug: "articles/" + postFilePath.replace(".mdx", ""),
+    } as PostPreview);
   }
+
+  const postPreviewsSorted = postPreviews.sort((a, b) => {
+    return (
+      new Date(b.publishingDate).getTime() -
+      new Date(a.publishingDate).getTime()
+    );
+  });
+
+  const col1 = postPreviewsSorted.slice(
+    0,
+    Math.ceil(postPreviewsSorted.length / 3)
+  );
+  const col2 = postPreviewsSorted.slice(
+    Math.ceil(postPreviewsSorted.length / 3),
+    Math.ceil((postPreviewsSorted.length / 3) * 2)
+  );
+  const col3 = postPreviewsSorted.slice(
+    Math.ceil((postPreviewsSorted.length / 3) * 2)
+  );
+
+  const mobileCol1 = postPreviewsSorted.slice(
+    0,
+    Math.ceil(postPreviewsSorted.length / 2)
+  );
+
+  const mobileCol2 = postPreviewsSorted.slice(
+    Math.ceil(postPreviewsSorted.length / 2)
+  );
+
+  return {
+    props: {
+      count: postPreviews.length,
+      postPreviews: {
+        col1,
+        col2,
+        col3,
+        mobileCol1,
+        mobileCol2,
+      },
+    },
+    // enable ISR
+    revalidate: 60,
+  };
 }

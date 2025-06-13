@@ -62,7 +62,7 @@ export default function PostPage({
 }
 
 export async function getStaticPaths() {
-  const postsDirectory = path.join(process.cwd(), 'posts');
+  const postsDirectory = path.join(process.cwd(), 'data/posts');
   const filenames = fs.readdirSync(postsDirectory);
   
   const paths = filenames
@@ -79,13 +79,9 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(
-  ctx: GetStaticPropsContext<{
-    slug: string;
-  }>,
-) {
-  const { slug } = ctx.params!;
-  const postsDirectory = path.join(process.cwd(), 'posts');
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const postsDirectory = path.join(process.cwd(), 'data/posts');
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
   
   try {

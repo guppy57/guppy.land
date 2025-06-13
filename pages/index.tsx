@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import DreamflowBadge from "@/components/DreamflowBadge";
 import { NextSeo } from "next-seo";
 import ContainerWide from "@/components/ContainerWide";
 import Footer from "@/components/Footer";
