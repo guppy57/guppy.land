@@ -3,8 +3,7 @@ const withMDX = require("@next/mdx")({
   options: {
     remarkPlugins: [],
     rehypePlugins: [],
-    // If you use `MDXProvider`, uncomment the following line.
-    // providerImportSource: "@mdx-js/react",
+    providerImportSource: "@mdx-js/react",
   },
 });
 
@@ -66,23 +65,6 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: true,
-  // Add this section to ensure posts are included in production
-  webpack: (config) => {
-    // Add rule for MDX files
-    config.module.rules.push({
-      test: /\.mdx?$/,
-      use: [
-        {
-          loader: '@mdx-js/loader',
-          options: {
-            providerImportSource: '@mdx-js/react',
-          },
-        },
-      ],
-    });
-
-    return config;
-  },
 };
 
 // Injected content via Sentry wizard below

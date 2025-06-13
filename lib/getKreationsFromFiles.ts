@@ -13,27 +13,27 @@ export async function getKreationsFromFiles(): Promise<IKreation[]> {
     const { data, content } = matter(fileContents);
 
     return {
-      _id: data.id,
-      _createdAt: data.created_at,
-      name: data.name,
-      description: data.description,
+      _id: data.id || null,
+      _createdAt: data.created_at || null,
+      name: data.name || null,
+      description: data.description || null,
       brief: content.trim(),
       logo: {
         asset: {
-          url: data.logo || null
+          url: `/creations/${data.logo}` || null
         }
       },
       images: [], // We can add support for multiple images later if needed
       icon: {
         asset: {
-          url: data.icon || null
+          url: `/creations/${data.icon}` || null
         }
       },
-      status: data.status,
+      status: data.status || null,
       tags: data.tags || [],
-      url: data.url,
-      founding_year: data.founding_year,
-      email: data.email
+      url: data.url || null,
+      founding_year: data.founding_year || null,
+      email: data.email || null
     } as IKreation;
   });
 

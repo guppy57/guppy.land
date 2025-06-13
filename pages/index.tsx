@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { useMemo, useState } from "react";
 import IKreation from "@/types/IKreation";
-import getKreations from "@/lib/getKreations";
 import tags from "@/lib/tags";
 import ITag from "@/types/ITag";
 import {
@@ -30,13 +29,15 @@ import Link from "next/link";
 import { Hash } from "@phosphor-icons/react/dist/ssr";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import GuppyBadge from "@/components/GuppyBadge";
+import { GetStaticProps } from 'next';
+import { getKreationsFromFiles } from '@/lib/getKreationsFromFiles';
 
 interface HomeProps {
   tags: ITag[];
   kreations: IKreation[];
 }
 
-export default function Home(props: HomeProps) {
+export default function Home({ kreations }: HomeProps) {
   const [tag, setTag] = useState<string>("all");
   const [open, setOpen] = useState<boolean>(false);
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
@@ -44,11 +45,11 @@ export default function Home(props: HomeProps) {
   const [selectedKreation, setSelectedKreation] = useState<IKreation | null>();
 
   const filteredKreations = useMemo(() => {
-    return props.kreations.filter((kreation: IKreation) => {
+    return kreations.filter((kreation: IKreation) => {
       if (tag === "all") return true;
       return kreation.tags.includes(tag);
     });
-  }, [props.kreations, tag]);
+  }, [kreations, tag]);
 
   return (
     <div className="relative">
@@ -425,13 +426,13 @@ export default function Home(props: HomeProps) {
   );
 }
 
-export async function getStaticProps() {
-  const kreations: IKreation[] = await getKreations();
+export const getStaticProps: GetStaticProps = async () => {
+  const kreations = await getKreationsFromFiles();
 
   return {
     props: {
       kreations,
-      tags, // TODO make this both tags and the statuses for people to filter with, you can filter by both status and tag?
     },
+    revalidate: 60, // Revalidate every minute
   };
-}
+};
