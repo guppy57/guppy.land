@@ -1,7 +1,7 @@
 ---
 id: d2a877bf-c8f5-499b-973a-721b85fbc017
 name: BuildChicago 2019
-description: 24-hour student hackathon in Chicago, IL>
+description: 24-hour student hackathon in Chicago, IL
 email: hello@kreativehorizon.com
 founding_year: 2019
 status: completed
