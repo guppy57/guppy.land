@@ -117,7 +117,7 @@ export default function Home({ kreations }: HomeProps) {
                         <Image
                           src={kreation.icon.asset.url}
                           alt={kreation.name}
-                          className="h-auto w-52"
+                          className="h-auto w-52 drop-shadow-2xl"
                           width={200}
                           height={200}
                         />
