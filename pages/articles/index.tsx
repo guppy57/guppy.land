@@ -9,7 +9,7 @@ import { PostPreview } from "@/types/posts";
 import Navbar from "@/components/Navbar";
 import ContainerWide from "@/components/ContainerWide";
 import Footer from "@/components/Footer";
-import DreamflowBadge from "@/components/DreamflowBadge";
+import GuppyBadge from "@/components/GuppyBadge";
 import { motion } from "framer-motion";
 import { NextSeo } from "next-seo";
 
@@ -121,7 +121,7 @@ export default function Articles({
           transition: { duration: 0.25 },
         }}
       >
-        <DreamflowBadge />
+        <GuppyBadge />
       </motion.div>
     </div>
   );

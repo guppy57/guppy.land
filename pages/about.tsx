@@ -3,7 +3,8 @@ import ContainerWide from "@/components/ContainerWide";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { NextSeo } from "next-seo";
-import DreamflowBadge from "@/components/DreamflowBadge";
+import { motion } from "framer-motion";
+import GuppyBadge from "@/components/GuppyBadge";
 
 export default function About() {
   return (
@@ -70,7 +71,17 @@ export default function About() {
         </div>
       </ContainerWide>
       <Footer />
-      <DreamflowBadge />
+      <motion.div
+        className={"fixed bottom-4 right-4"}
+        initial={{ opacity: 0, y: 5 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.25 },
+        }}
+      >
+        <GuppyBadge />
+      </motion.div>
     </div>
   );
 }

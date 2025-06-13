@@ -1,4 +1,5 @@
-import DreamflowBadge from "@/components/DreamflowBadge";
+import { motion } from "framer-motion";
+import GuppyBadge from "@/components/GuppyBadge";
 import { NextSeo } from "next-seo";
 import Container from "@/components/Container";
 import Footer from "@/components/Footer";
@@ -37,7 +38,17 @@ export default function Home() {
         </Tabs>
       </Container>
       <Footer />
-      <DreamflowBadge />
+      <motion.div
+        className={"fixed bottom-4 right-4"}
+        initial={{ opacity: 0, y: 5 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.25 },
+        }}
+      >
+        <GuppyBadge />
+      </motion.div>
     </div>
   );
 }

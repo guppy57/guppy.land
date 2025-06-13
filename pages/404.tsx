@@ -1,9 +1,11 @@
 import Container from "../components/Container";
-import DreamflowBadge from "@/components/DreamflowBadge";
+import GuppyBadge from "@/components/GuppyBadge";
 import { NextSeo } from "next-seo";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import Footer from "@/components/Footer";
 
 export default function Custom404() {
   return (
@@ -24,7 +26,18 @@ export default function Custom404() {
           </Link>
         </Container>
       </div>
-      <DreamflowBadge />
+      <Footer />
+      <motion.div
+        className={"fixed bottom-4 right-4"}
+        initial={{ opacity: 0, y: 5 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.25 },
+        }}
+      >
+        <GuppyBadge />
+      </motion.div>
     </div>
   );
 }

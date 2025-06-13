@@ -9,7 +9,7 @@ import ContainerWide from "@/components/ContainerWide";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import DreamflowBadge from "@/components/DreamflowBadge";
+import GuppyBadge from "@/components/GuppyBadge";
 import { formatDate } from "@/lib/utils";
 import { NextSeo } from "next-seo";
 
@@ -55,7 +55,7 @@ export default function PostPage({
           transition: { duration: 0.25 },
         }}
       >
-        <DreamflowBadge />
+        <GuppyBadge />
       </motion.div>
     </div>
   );
