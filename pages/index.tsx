@@ -53,7 +53,7 @@ export default function Home({ kreations }: HomeProps) {
 
   return (
     <div className="relative bg-[#F7F7F2]">
-      <NextSeo title="Home" description="Radical starts here." />
+      <NextSeo title="Hi, I'm Guppy" description="Software engineer, designer, writer, and Christian apologist."/>
       <Navbar activeLink="home" />
       <ContainerWide className="pt-4 pb-[16rem] sm:pb-[20rem] lg:pb-[36rem] min-h-screen">
         <div className="flex items-center justify-end md:justify-between mb-2 sm:mb-6">

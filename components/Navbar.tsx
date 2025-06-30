@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ContainerWide from "@/components/ContainerWide";
 import { List } from "@phosphor-icons/react/dist/ssr";
-import { Kanban, CardsThree, HandWaving } from "@phosphor-icons/react/dist/ssr";
+import { Kanban, CardsThree, HandWaving, ReadCvLogo } from "@phosphor-icons/react/dist/ssr";
 import {
     Drawer,
     DrawerContent,
@@ -19,6 +19,7 @@ interface NavbarProps {
 interface LinkProps {
   title: string;
   href: string;
+  rel?: string;
   target?: string;
   icon: React.ReactNode;
   isActive: boolean;
@@ -29,6 +30,7 @@ function NavLink(props: LinkProps) {
     <Link
       href={props.href}
       target={props.target}
+      rel={props.rel}
       className={cn(
         "flex items-center justify-center transition hover:underline",
         props.isActive ? "decoration-[rgba(38,38,38,1)]" : "decoration-inactive"
@@ -139,6 +141,22 @@ export default function Navbar(props: NavbarProps) {
                 isActive={props.activeLink === "articles"}
               />
               <NavLink
+                title="Resume"
+                href={"/Armaan%20Gupta%20Resume.pdf"}
+                rel={"noopener noreferrer"}
+                target={"_blank"}
+                icon={
+                  <ReadCvLogo
+                    className="w-6 h-6"
+                    weight="bold"
+                    color={
+                      props.activeLink === "resume" ? "rgba(38,38,38,1)" : "#B7B7B5"
+                    }
+                  />
+                }
+                isActive={props.activeLink === "resume"}
+              />
+              <NavLink
                 title="About"
                 href="/about"
                 icon={
@@ -205,6 +223,22 @@ export default function Navbar(props: NavbarProps) {
                       />
                     }
                     isActive={props.activeLink === "articles"}
+                  />
+                  <MobileNavLink
+                    title="Resume"
+                    href={"/Armaan%20Gupta%20Resume.pdf"}
+                    rel={"noopener noreferrer"}
+                    target={"_blank"}
+                    icon={
+                      <ReadCvLogo
+                        className="w-10 h-10"
+                        weight="bold"
+                        color={
+                          props.activeLink === "resume" ? "rgba(38,38,38,1)" : "#B7B7B5"
+                        }
+                      />
+                    }
+                    isActive={props.activeLink === "resume"}
                   />
                   <MobileNavLink
                     title="About"
