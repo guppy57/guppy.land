@@ -4,19 +4,17 @@ import { motion } from 'framer-motion';
 const GuppyBadge = () => {
   return (
     <div>
-      <div className="dflow-badge-container dflow-hvr-shrink">
+      <div className="fixed bottom-2 right-2 sm:bottom-5 sm:right-5 z-[9999] dflow-hvr-shrink">
         <a href="https://guppy.land" className="dflow-badge-link" rel="noopener">
-          <div className="dflow-logo">
-            <Image
-              src="/GUPPY-icon.png"
-              alt="Guppy Logo"
-              width={28}
-              height={28}
-              className=""
-            />
-          </div>
+          <Image
+            src="/GUPPY-icon.png"
+            alt="Guppy Logo"
+            width={28}
+            height={28}
+            className="w-[22px] h-[22px] sm:w-[28px] sm:h-[28px] mr-1"
+          />
           <svg
-            className="dflow-text"
+            className="w-[100px] sm:w-[112px] h-auto pr-0.5 -mt-0.5"
             viewBox="0 0 233 45"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -45,13 +43,6 @@ const GuppyBadge = () => {
       </div>
 
       <style jsx>{`
-        .dflow-badge-container {
-          position: fixed;
-          bottom: 20px;
-          right: 20px;
-          z-index: 9999;
-        }
-
         .dflow-badge-link {
           box-shadow: 9px 9px 12px rgb(0 0 0 / 0.2);
           display: flex;
@@ -61,25 +52,6 @@ const GuppyBadge = () => {
           border: 1px solid #90909056;
           border-radius: 8px;
           text-decoration: none;
-        }
-
-        .dflow-logo {
-          width: 28px;
-          height: 28px;
-          margin-right: 3px;
-        }
-
-        .kbl-logo {
-          width: 21px;
-          height: 21px;
-          margin-right: 4px;
-        }
-
-        .dflow-text {
-          width: 112px;
-          height: auto;
-          padding-right: 2px;
-          margin-top: -2px;
         }
 
         .dflow-hvr-shrink {

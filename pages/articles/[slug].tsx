@@ -32,7 +32,7 @@ export default function PostPage({
           <Link className="no-underline italic font-semibold" href="/articles">
             &#8592; Get back to Notes and Articles
           </Link>
-          <div className="bg-white px-10 py-12 rounded-lg drop-shadow-xl mt-12 relative">
+          <div className="bg-white px-10 py-12 rounded-lg drop-shadow-xl mt-12">
             <StatusBadge
               text={formatDate(source.frontmatter.publishingDate as string)}
               className="absolute top-4 right-4"
@@ -50,17 +50,7 @@ export default function PostPage({
         </div>
       </Container>
       <Footer />
-      <motion.div
-        className={"fixed bottom-4 right-4"}
-        initial={{ opacity: 0, y: 5 }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.25 },
-        }}
-      >
-        <GuppyBadge />
-      </motion.div>
+      <GuppyBadge />
     </div>
   );
 }
