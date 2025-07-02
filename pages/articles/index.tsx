@@ -24,7 +24,7 @@ export default function Articles({
         description="Useful writings on topics that keep me occupied."
       />
       <Navbar activeLink="articles" />
-      <ContainerWide className="mt-16 pb-[16rem] sm:pb-[20rem] lg:pb-[36rem]">
+      <ContainerWide className="mt-16 pb-[6rem] sm:pb-[14rem] lg:pb-[18rem]">
         {count === 0 ? (
           <div className="pt-12 pb-72">
             <h2 className="text-2xl font-comingSoon mb-4">

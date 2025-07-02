@@ -1,13 +1,16 @@
 import Image from "next/image";
+import ContainerWide from '@/components/ContainerWide';
 
 export default function Footer() {
   return (
-    <Image
-      src="/images/GUPPY-type-wide.svg"
-      alt="Guppy typographic logo wide in black"
-      className="w-full h-auto absolute bottom-0"
-      width={100}
-      height={300}
-    />
+    <ContainerWide>
+      <Image
+        src="/GUPPY-logo-gradient.webp"
+        alt="Guppy typographic logo wide in a black gradient"
+        className="w-full h-auto"
+        width={2000}
+        height={500}
+      />
+    </ContainerWide>
   )
 }

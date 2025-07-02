@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const GuppyBadge = () => {
   return (
     <div>
-      <div className="fixed bottom-2 right-2 sm:bottom-5 sm:right-5 z-[9999] dflow-hvr-shrink">
+      <div className="fixed bottom-0 right-0 sm:bottom-5 sm:right-5 z-[9999] dflow-hvr-shrink">
         <a href="https://guppy.land" className="dflow-badge-link" rel="noopener">
           <Image
             src="/GUPPY-icon.png"

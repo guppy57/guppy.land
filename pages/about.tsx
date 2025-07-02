@@ -59,7 +59,7 @@ export default function About() {
       />
       <Navbar activeLink="about" />
       <Photos />
-      <Container className="pb-[16rem] sm:pb-[20rem] lg:pb-[36rem]">
+      <Container className="pb-[6rem] sm:pb-[14rem] lg:pb-[18rem]">
         <div>
           <h1 className="text-5xl font-bold tracking-tight pt-12">
             I&apos;m Armaan Gupta. I live in Washington, DC (prev Ames, IA) where I work on software at John Deere, build beautiful

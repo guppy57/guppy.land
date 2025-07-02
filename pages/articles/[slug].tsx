@@ -27,7 +27,7 @@ export default function PostPage({
         description={source.frontmatter.description as string}
       />
       <Navbar activeLink="articles" />
-      <Container className="pb-[16rem] sm:pb-[20rem] lg:pb-[36rem]">
+      <Container className="pb-[6rem] sm:pb-[14rem] lg:pb-[18rem]">
         <div className="pt-6">
           <Link className="no-underline italic font-semibold" href="/articles">
             &#8592; Get back to Notes and Articles
