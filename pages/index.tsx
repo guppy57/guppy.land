@@ -242,7 +242,7 @@ export default function Home({ kreations }: HomeProps) {
           <Drawer
             open={openDrawer}
             onOpenChange={(val: boolean) => {
-              if (val === false) {
+              if (!val) {
                 setTimeout(() => setHideBadge(false), 250);
               }
               setOpenDrawer(val);

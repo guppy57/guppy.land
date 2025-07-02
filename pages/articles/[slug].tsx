@@ -1,15 +1,13 @@
 import fs from "fs";
 import path from "path";
-import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
+import { InferGetStaticPropsType } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import React from "react";
 import Navbar from "@/components/Navbar";
-import ContainerWide from "@/components/ContainerWide";
 import Container from "@/components/Container";
 import Link from "next/link";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
 import GuppyBadge from "@/components/GuppyBadge";
 import { formatDate } from "@/lib/utils";
 import { NextSeo } from "next-seo";

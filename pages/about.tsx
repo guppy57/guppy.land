@@ -1,5 +1,4 @@
 import Image from "next/image";
-import ContainerWide from "@/components/ContainerWide";
 import Container from "@/components/Container";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";

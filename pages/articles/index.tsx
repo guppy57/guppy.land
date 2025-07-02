@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import PostCard from "@/components/PostCard";
 import { InferGetStaticPropsType } from "next";
 import fs from "fs";
