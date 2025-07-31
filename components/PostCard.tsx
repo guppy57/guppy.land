@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { PostPreview } from "@/types/posts";
-import { formatDate } from "@/lib/utils";
 import StatusBadge from "./StatusBadge";
 
 export default function PostCard({
@@ -21,15 +20,19 @@ export default function PostCard({
         )}
       >
         <StatusBadge
-          text={formatDate(postPreview.publishingDate)}
+          badgeType={postPreview.category}
+          text={postPreview.category}
           className="absolute top-4 right-4"
         />
         <Image
           src="/images/file.png"
           alt="File icon"
-          width={36}
-          height={44}
-          className="h-20 w-auto -ml-2 mb-6 -mt-4"
+          width={100}
+          height={130}
+          className={cn(
+            "h-20 w-auto -ml-2 mb-6 -mt-4 drop-shadow-xl transition-all duration-300 hover:scale-[110%]",
+            count % 2 === 0 ? "hover:-rotate-6" : "hover:rotate-6"
+          )}
         />
         <h2 className="font-comingSoon text-3xl mb-3 font-bold">{postPreview.title}</h2>
         <p className="text-lg">{postPreview.description}</p>

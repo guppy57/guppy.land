@@ -1,6 +1,8 @@
+// tags used to organize projects
+
 import ITag from "@/types/ITag";
 
-const tags: ITag[] = [
+const projectTags: ITag[] = [
   { title: "Event", value: "event" },
   { title: "Service", value: "service" },
   { title: "Mobile", value: "mobile" },
@@ -10,4 +12,4 @@ const tags: ITag[] = [
   { title: "Organization", value: "organization" },
 ];
 
-export default tags;
+export default projectTags;

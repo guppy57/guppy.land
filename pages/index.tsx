@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { useMemo, useState } from "react";
 import IKreation from "@/types/IKreation";
-import tags from "@/lib/tags";
+import projectTags from "@/lib/projectTags";
 import ITag from "@/types/ITag";
 import {
   Dialog,
@@ -67,7 +67,7 @@ export default function Home({ kreations }: HomeProps) {
             >
               all
             </span>
-            {tags.map((_tag: ITag, index: number) => (
+            {projectTags.map((_tag: ITag, index: number) => (
               <span
                 key={index}
                 className={cn(
@@ -110,7 +110,7 @@ export default function Home({ kreations }: HomeProps) {
                       }}
                     >
                       <StatusBadge
-                        status={kreation.status}
+                        badgeType={kreation.status}
                         className="absolute top-4 right-4"
                       />
                       <div className="h-72 w-full flex items-center justify-center">
@@ -189,7 +189,7 @@ export default function Home({ kreations }: HomeProps) {
                   <div className="col-span-1">
                     <p className="text-sm font-semibold mb-2">Status</p>
                     <StatusBadge
-                      status={selectedKreation?.status!}
+                      badgeType={selectedKreation?.status!}
                       className="border-gray-300 text-sm"
                     />
                   </div>
@@ -269,7 +269,7 @@ export default function Home({ kreations }: HomeProps) {
                     }}
                   >
                     <StatusBadge
-                      status={kreation.status}
+                      badgeType={kreation.status}
                       className="absolute top-4 right-4"
                     />
                     <div className="h-72 w-full flex items-center justify-center">
@@ -357,7 +357,7 @@ export default function Home({ kreations }: HomeProps) {
                       <div className="col-span-1">
                         <p className="text-sm font-semibold mb-2">Status</p>
                         <StatusBadge
-                          status={selectedKreation?.status!}
+                          badgeType={selectedKreation?.status!}
                           className="border-gray-300 text-sm"
                         />
                       </div>

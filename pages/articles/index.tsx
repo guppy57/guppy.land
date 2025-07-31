@@ -10,11 +10,55 @@ import Footer from "@/components/Footer";
 import GuppyBadge from "@/components/GuppyBadge";
 import { motion } from "framer-motion";
 import { NextSeo } from "next-seo";
+import articleTags from '@/lib/articleTags';
+import { cn } from '@/lib/utils';
+import ITag from '@/types/ITag';
+import { useMemo, useState } from 'react';
 
 export default function Articles({
   postPreviews,
   count,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [tag, setTag] = useState<string>("all");
+
+  const filteredArticles = useMemo(() => {
+    const postPreviewsFiltered = postPreviews.filter((preview: PostPreview) => {
+      if (tag === "all") return true;
+      return preview.category.includes(tag);
+    });
+
+    const col1 = postPreviewsFiltered.slice(
+      0,
+      Math.ceil(postPreviewsFiltered.length / 3)
+    );
+    const col2 = postPreviewsFiltered.slice(
+      Math.ceil(postPreviewsFiltered.length / 3),
+      Math.ceil((postPreviewsFiltered.length / 3) * 2)
+    );
+    const col3 = postPreviewsFiltered.slice(
+      Math.ceil((postPreviewsFiltered.length / 3) * 2)
+    );
+
+    const mobileCol1 = postPreviewsFiltered.slice(
+      0,
+      Math.ceil(postPreviewsFiltered.length / 2)
+    );
+
+    const mobileCol2 = postPreviewsFiltered.slice(
+      Math.ceil(postPreviewsFiltered.length / 2)
+    );
+
+    return {
+      col1,
+      col2,
+      col3,
+      mobileCol1,
+      mobileCol2,
+      total: postPreviewsFiltered.length,
+    }
+
+  }, [postPreviews, tag])
+
   return (
     <div className="relative min-h-screen bg-[#F7F7F2]">
       <NextSeo
@@ -23,6 +67,35 @@ export default function Articles({
       />
       <Navbar activeLink="articles" />
       <ContainerWide className="mt-16 pb-[6rem] sm:pb-[14rem] lg:pb-[18rem]">
+        <div className="flex items-center justify-end md:justify-between mb-2 sm:mb-6">
+          <div className="space-x-4 hidden md:flex items-center justify-start flex-wrap">
+            <span
+              className={cn(
+                tag === "all" ? "text-purple-600" : "text-gray-500",
+                "cursor-pointer hover:text-purple-500 font-departureMono tracking-tighter"
+              )}
+              onClick={() => setTag("all")}
+            >
+              all
+            </span>
+            {articleTags.map((_tag: ITag, index: number) => (
+              <span
+                key={index}
+                className={cn(
+                  tag === _tag.value ? "text-purple-600" : "text-gray-500",
+                  "cursor-pointer hover:text-purple-500 font-departureMono tracking-tighter"
+                )}
+                onClick={() => setTag(_tag.value)}
+              >
+                {_tag.value.replaceAll("-", " ")}
+              </span>
+            ))}
+          </div>
+          <p className="font-departureMono text-sm tracking-tighter text-gray-400">
+            {filteredArticles.total}{" "}
+            {filteredArticles.total === 1 ? "articles" : "articles"}
+          </p>
+        </div>
         {count === 0 ? (
           <div className="pt-12 pb-72">
             <h2 className="text-2xl font-comingSoon mb-4">
@@ -36,7 +109,7 @@ export default function Articles({
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-24">
             <div className="hidden lg:block col-span-1 space-y-4">
-              {postPreviews.col1.map((postPreview, i: number) => {
+              {filteredArticles.col1.map((postPreview, i: number) => {
                 return (
                   <div key={i}>
                       <PostCard postPreview={postPreview} count={i} key={i} />
@@ -45,7 +118,7 @@ export default function Articles({
               })}
             </div>
             <div className="hidden lg:block col-span-1 space-y-4">
-              {postPreviews.col2.map((postPreview, i: number) => {
+              {filteredArticles.col2.map((postPreview, i: number) => {
                 return (
                   <div key={i}>
                     <PostCard postPreview={postPreview} count={i} key={i} />
@@ -54,7 +127,7 @@ export default function Articles({
               })}
             </div>
             <div className="hidden lg:block col-span-1 space-y-4">
-              {postPreviews.col3.map((postPreview, i: number) => {
+              {filteredArticles.col3.map((postPreview, i: number) => {
                 return (
                   <div key={i}>
                     <PostCard postPreview={postPreview} count={i} key={i} />
@@ -63,7 +136,7 @@ export default function Articles({
               })}
             </div>
             <div className="block lg:hidden col-span-1 space-y-4">
-              {postPreviews.mobileCol1.map((postPreview, i: number) => {
+              {filteredArticles.mobileCol1.map((postPreview, i: number) => {
                 return (
                   <div key={i}>
                     <PostCard postPreview={postPreview} count={i} key={i} />
@@ -72,7 +145,7 @@ export default function Articles({
               })}
             </div>
             <div className="block lg:hidden col-span-1 space-y-4">
-              {postPreviews.mobileCol2.map((postPreview, i: number) => {
+              {filteredArticles.mobileCol2.map((postPreview, i: number) => {
                 return (
                   <div key={i}>
                     <PostCard postPreview={postPreview} count={i} key={i} />
@@ -132,39 +205,11 @@ export async function getStaticProps() {
     );
   });
 
-  const col1 = postPreviewsSorted.slice(
-    0,
-    Math.ceil(postPreviewsSorted.length / 3)
-  );
-  const col2 = postPreviewsSorted.slice(
-    Math.ceil(postPreviewsSorted.length / 3),
-    Math.ceil((postPreviewsSorted.length / 3) * 2)
-  );
-  const col3 = postPreviewsSorted.slice(
-    Math.ceil((postPreviewsSorted.length / 3) * 2)
-  );
-
-  const mobileCol1 = postPreviewsSorted.slice(
-    0,
-    Math.ceil(postPreviewsSorted.length / 2)
-  );
-
-  const mobileCol2 = postPreviewsSorted.slice(
-    Math.ceil(postPreviewsSorted.length / 2)
-  );
-
-  return {
+    return {
     props: {
       count: postPreviews.length,
-      postPreviews: {
-        col1,
-        col2,
-        col3,
-        mobileCol1,
-        mobileCol2,
-      },
+      postPreviews: postPreviewsSorted,
     },
-    // enable ISR
-    revalidate: 60,
+    revalidate: 60, // enable ISR
   };
 }
