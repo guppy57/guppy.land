@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://kreativeusa.com
+Host: https://guppy.land
 
 # Sitemaps
-Sitemap: https://kreativeusa.com/sitemap.xml
+Sitemap: https://guppy.land/sitemap.xml
