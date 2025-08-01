@@ -25,14 +25,14 @@ export default function PostPage({
         description={source.frontmatter.description as string}
       />
       <Navbar activeLink="articles" />
-      <Container className="pb-[6rem] sm:pb-[14rem] lg:pb-[18rem]">
+      <Container className="pb-[6rem] sm:pb-[14rem] lg:pb-[18rem] ">
         <div className="pt-6">
           <Link className="no-underline italic font-semibold" href="/articles">
             &#8592; Get back to Notes and Articles
           </Link>
           <div className="bg-white px-10 py-12 rounded-lg drop-shadow-xl mt-12">
             <StatusBadge
-              text={formatDate(source.frontmatter.publishingDate as string)}
+              badgeType={source.frontmatter.category as string}
               className="absolute top-4 right-4"
             />
             <h1 className="font-comingSoon font-bold text-5xl mb-4 leading-normal">
