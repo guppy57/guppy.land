@@ -5,7 +5,8 @@ import {
   Sun,
   SealCheck,
   CalendarBlank,
-  Smiley
+  Smiley,
+  Brain
 } from "@phosphor-icons/react/dist/ssr";
 
 interface IStatusBadgeProps {
@@ -30,8 +31,17 @@ export default function StatusBadge(props: IStatusBadgeProps) {
   if (props.badgeType === "just-for-fun") {
     return (
       <span className={cn(containerStyle, props.className)}>
-        <Smiley weight="bold" className="h-4 w-4 inline-block mr-0.5 -mt-[3px]" />
+        <Smiley weight="bold" className="h-4 w-4 inline-block mr-1 -mt-[2px]" />
         just for fun
+      </span>
+    )
+  }
+
+  if (props.badgeType === "philosophy") {
+    return (
+      <span className={cn(containerStyle, props.className)}>
+        <Brain weight="bold" className="h-4 w-4 inline-block mr-1.5" />
+        philosophy
       </span>
     )
   }

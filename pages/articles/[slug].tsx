@@ -9,11 +9,11 @@ import Container from "@/components/Container";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import GuppyBadge from "@/components/GuppyBadge";
-import { formatDate } from "@/lib/utils";
 import { NextSeo } from "next-seo";
 import StatusBadge from "@/components/StatusBadge";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Image from 'next/image';
 
 export default function PostPage({
   source,
@@ -21,7 +21,6 @@ export default function PostPage({
   const router = useRouter();
   const { slug } = router.query;
   
-  // Extract frontmatter for easier access
   const title = source.frontmatter.title as string;
   const description = source.frontmatter.description as string || "";
   const publishingDate = source.frontmatter.publishingDate as string;
@@ -30,10 +29,8 @@ export default function PostPage({
   const tags = (source.frontmatter.tags as string[]) || [];
   const featuredImage = (source.frontmatter.featuredImage as string) || "/og-image.png";
   
-  // Construct the canonical URL
   const canonicalUrl = `https://guppy.land/articles/${slug}`;
   
-  // Create the JSON-LD structured data for the article
   const articleStructuredData = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -84,7 +81,7 @@ export default function PostPage({
         />
       </Head>
       <NextSeo
-        title={`${title} | Articles | Armaan Gupta`}
+        title={`${title} | Articles`}
         description={description}
         openGraph={{
           type: "article",
@@ -130,6 +127,7 @@ export default function PostPage({
             <h2 className="mb-10 text-2xl font-semibold tracking-tight font-comingSoon text-gray-400">
               {source.frontmatter.description as string}
             </h2>
+            <Image src={featuredImage} alt={"Featured image for " + title} width={1000} height={1000} className={"w-full h-auto mb-8 rounded-md"}/>
             <div className="prose font-medium text-xl">
               <MDXRemote {...source} />
             </div>
