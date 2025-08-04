@@ -6,7 +6,9 @@ import {
   SealCheck,
   CalendarBlank,
   Smiley,
-  Brain
+  Brain,
+  Cross,
+  HandsPraying,
 } from "@phosphor-icons/react/dist/ssr";
 
 interface IStatusBadgeProps {
@@ -36,6 +38,24 @@ export default function StatusBadge(props: IStatusBadgeProps) {
       <span className={cn(containerStyle, props.className)}>
         <Smiley weight="bold" className="h-4 w-4 inline-block mr-1 -mt-[2px]" />
         just for fun
+      </span>
+    )
+  }
+
+  if (props.badgeType === "christianity") {
+    return (
+      <span className={cn(containerStyle, props.className)}>
+        <Cross weight="bold" className="h-4 w-4 inline-block mr-1 -mt-[2px]" />
+        christianity
+      </span>
+    )
+  }
+
+  if (props.badgeType === "religion") {
+    return (
+      <span className={cn(containerStyle, props.className)}>
+        <HandsPraying weight="bold" className="h-4 w-4 inline-block mr-1 -mt-[2px]" />
+        religion
       </span>
     )
   }

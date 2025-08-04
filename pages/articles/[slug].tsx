@@ -28,7 +28,7 @@ export default function PostPage({
   const category = source.frontmatter.category as string || "Article";
   const author = (source.frontmatter.author as string) || "Armaan Gupta";
   const tags = (source.frontmatter.tags as string[]) || [];
-  const featuredImage = (source.frontmatter.featuredImage as string) || "/og-image.png";
+  const featuredImage = (source.frontmatter.featuredImage as string);
   
   const canonicalUrl = `https://guppy.land/articles/${slug}`;
   
@@ -122,13 +122,11 @@ export default function PostPage({
               <StatusBadge darker badgeType={source.frontmatter.category as string} />
               <StatusBadge darker badgeType={"publishDate"} text={formatDate(source.frontmatter.publishingDate as string)} />
             </div>
-            <h1 className="font-comingSoon font-bold text-5xl mb-4 mt-8 leading-normal">
-              {source.frontmatter.title as string}
-            </h1>
-            <h2 className="mb-10 text-2xl font-semibold tracking-tight font-comingSoon text-gray-400">
-              {source.frontmatter.description as string}
-            </h2>
-            <Image src={featuredImage} alt={"Featured image for " + title} width={1000} height={500} placeholder={"blur"} className={"w-full h-auto mb-8 rounded-md"}/>
+            <h1 className="font-comingSoon font-bold text-5xl mb-4 mt-8 leading-normal">{title}</h1>
+            <h2 className="mb-10 text-2xl font-semibold tracking-tight font-comingSoon text-gray-400">{description}</h2>
+            {featuredImage && (
+              <Image src={featuredImage} alt={"Featured image for " + title} width={1000} height={500} className={"w-full h-auto mb-8 rounded-md"}/>
+            )}
             <div className="prose font-medium text-xl">
               <MDXRemote {...source} />
             </div>
