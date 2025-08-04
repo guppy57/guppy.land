@@ -13,11 +13,14 @@ interface IStatusBadgeProps {
   badgeType: string;
   text?: string;
   className?: string;
+  darker?: boolean;
 }
 
 export default function StatusBadge(props: IStatusBadgeProps) {
-  const containerStyle =
-    "text-xs font-semibold text-black px-2 py-1 rounded-full font-departureMono tracking-tighter border border-gray-200/50 bg-white";
+  let containerStyle =
+    "text-xs font-semibold text-black px-2 py-1 rounded-full font-departureMono tracking-tighter bg-white";
+
+  containerStyle += props.darker ? " border border-gray-500/38" : " border border-gray-200/50";
 
   if (props.badgeType === "publishDate") {
     return (

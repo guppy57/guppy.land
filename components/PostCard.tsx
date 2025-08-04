@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PostPreview } from "@/types/posts";
 import StatusBadge from "./StatusBadge";
+import { formatDate } from '@/lib/utils';
 
 export default function PostCard({
   postPreview,
@@ -19,11 +20,10 @@ export default function PostCard({
           count % 2 === 0 ? "hover:rotate-1" : "hover:-rotate-1"
         )}
       >
-        <StatusBadge
-          badgeType={postPreview.category}
-          text={postPreview.category}
-          className="absolute top-4 right-4"
-        />
+        <div className={"absolute top-4 right-4 flex items-center justify-end gap-2"}>
+          <StatusBadge badgeType={postPreview.category} />
+          <StatusBadge badgeType={"publishDate"} text={formatDate(postPreview.publishingDate)} />
+        </div>
         <Image
           src="/images/file.png"
           alt="File icon"

@@ -14,6 +14,7 @@ import StatusBadge from "@/components/StatusBadge";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Image from 'next/image';
+import { formatDate } from '@/lib/utils';
 
 export default function PostPage({
   source,
@@ -117,11 +118,11 @@ export default function PostPage({
             &#8592; Get back to Notes and Articles
           </Link>
           <div className="bg-white px-10 py-12 rounded-lg drop-shadow-xl mt-12">
-            <StatusBadge
-              badgeType={source.frontmatter.category as string}
-              className="absolute top-4 right-4"
-            />
-            <h1 className="font-comingSoon font-bold text-5xl mb-4 leading-normal">
+            <div className={"absolute top-4 right-4 gap-2 flex items-end justify-end"}>
+              <StatusBadge darker badgeType={source.frontmatter.category as string} />
+              <StatusBadge darker badgeType={"publishDate"} text={formatDate(source.frontmatter.publishingDate as string)} />
+            </div>
+            <h1 className="font-comingSoon font-bold text-5xl mb-4 mt-8 leading-normal">
               {source.frontmatter.title as string}
             </h1>
             <h2 className="mb-10 text-2xl font-semibold tracking-tight font-comingSoon text-gray-400">
