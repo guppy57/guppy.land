@@ -128,7 +128,7 @@ export default function PostPage({
             <h2 className="mb-10 text-2xl font-semibold tracking-tight font-comingSoon text-gray-400">
               {source.frontmatter.description as string}
             </h2>
-            <Image src={featuredImage} alt={"Featured image for " + title} width={1000} height={1000} className={"w-full h-auto mb-8 rounded-md"}/>
+            <Image src={featuredImage} alt={"Featured image for " + title} width={1000} height={500} placeholder={"blur"} className={"w-full h-auto mb-8 rounded-md"}/>
             <div className="prose font-medium text-xl">
               <MDXRemote {...source} />
             </div>
