@@ -3,6 +3,8 @@ import path from "path";
 import { InferGetStaticPropsType } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Container from "@/components/Container";
@@ -163,7 +165,13 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   
   try {
     const postFile = fs.readFileSync(fullPath, "utf-8");
-    const mdxSource = await serialize(postFile, { parseFrontmatter: true });
+    const mdxSource = await serialize(postFile, { 
+      parseFrontmatter: true,
+      mdxOptions: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+      },
+    });
 
     return {
       props: {

@@ -230,3 +230,9 @@
   flex: 0 0 100%;
   min-width: 0;
 }
+
+/* KaTeX display math centering */
+.katex-display {
+  text-align: center !important;
+  margin: 1.5em 0 !important;
+}
