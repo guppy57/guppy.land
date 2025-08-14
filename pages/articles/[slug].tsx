@@ -14,7 +14,6 @@ import StatusBadge from "@/components/StatusBadge";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Image from 'next/image';
-import { formatDate } from '@/lib/utils';
 
 export default function PostPage({
   source,

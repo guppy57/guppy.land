@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { PostPreview } from "@/types/posts";
 import StatusBadge from "./StatusBadge";
-import { formatDate } from '@/lib/utils';
 
 export default function PostCard({
   postPreview,
