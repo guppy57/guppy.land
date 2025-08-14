@@ -9,6 +9,7 @@ import {
   Brain,
   Cross,
   HandsPraying,
+  CodesandboxLogo,
 } from "@phosphor-icons/react/dist/ssr";
 
 interface IStatusBadgeProps {
@@ -31,6 +32,15 @@ export default function StatusBadge(props: IStatusBadgeProps) {
         {props.text}
       </span>
     ); 
+  }
+
+  if (props.badgeType === "artificial-intelligence") {
+    return (
+      <span className={cn(containerStyle, props.className)}>
+        <CodesandboxLogo weight="bold" className="h-4 w-4 inline-block mr-0.5" />
+        artificial intelligence
+      </span>
+    );
   }
 
   if (props.badgeType === "just-for-fun") {

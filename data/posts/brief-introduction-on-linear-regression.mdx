@@ -1,0 +1,77 @@
+---
+title: Brief introduction on Linear Regression
+description: Linear regression is the basis of all machine learning. With a simple equation, mankind constructs the power to predict the future.
+slug: brief-introduction-on-linear-regression
+publishingDate: 2025-08-12
+author: Armaan Gupta
+tags:
+  - linear regression
+  - machine learning
+  - ai
+category: artificial-intelligence
+featuredImage:
+---
+The root of almost all machine learning is linear regression. The humble $y = mx + b$ that most high school aged children learn powers the predictive capabilities of numerical, probabilistic, and classification models under the *supervised learning* under machine learning. In an algebraic context, the equation earlier is used to plot a line on a graph where $m$ is the slope of the line, $z$ is the value of the x-coordinate supplied and considered the “input value”, $b$ is the y-intercept and can be represented as $(0, b)$ wherein the line at $x=0$ will have $y=b$, and finally $y$ is the output value of the preceding function and is the answer to, “Given X and this function, what is Y?”. From these four values you can plot a line on any two dimensional graph and correctly determine for any $x$ what $y$ would be and conversely, for any $y$ what $x$ would be.
+
+One of the most common use cases in Calculus for this line function is the graph a “Line of Best Fit” for set of $(x,y)$ coordinates. Given a graph of plotted points across the x and y axis, a single line is drawn that “best fits” most of the points on that graph. Best implies that there is one line above all other lines that will fit the most number of plotted points with the least vertical distance between the nearest edge of the line and the plotted point (also called *loss* which we’ll speak about later). A line of best fit can be used to visualize the trend of the data and more importantly, to predict values outside of the given dataset. Linear regression is simply this last use case. It is a statistical technique to predict an output from an input using a line of best of fit and a graph of plotted points. In the context of machine learning, linear regression predicts a *label* (y-value, output) from a *feature* (x-value, input). The function to do this is called a *model* and the set of “feature and label” or “many features and label” is called an *example*. A set of examples is called a *dataset* and is what’s used to train, validate, and evaluate a model. An good instance of linear regression could be to use the price of a car (input) to predict the fuel economy (output). Or, using the temperature in Chicago (input) to predict umbrella sales (output). Linear regression models can be used with one feature, but more often than not many different features are used (referred to as ‘multi-variable linear regression’). In the real world, it’s very rare that only *one* variable is ever the direct cause of another, and thus most models are trained with many different features. With the example of predicting the fuel economy of a given car, you could use the make, color, type of car (sedan, SUV, van), and number of seats in addition to the price to more accurately predict the fuel economy. Larger, high-quality datasets leads to better optimized models. More features that have a correlative relationship with the label lead to more accurate predictions.
+
+In a machine learning context, the equation for a single-variable Linear Regression model is:
+
+$$y' = b + w_1x_1$$
+Where:
+- $y’$ = label (output)
+- $x_1$ = feature (input)
+- $w_1$ = weight of the feature $x$, equivalent to the slope of the line.
+- $b$ = bias, equivalent to the y-intercept.
+
+For a multi-variable Linear Regression model, the equation is extended as:
+
+$$y' = b + w_1x_1 + w_2x_2 + ... + w_Nx_N$$
+
+Where in the number of features goes from from 1 to $N$. In the case of multiple variables, there is still one bias $b$ for the entire equation, but an individual weight $w$ for each feature present in the model.
+
+The goal of crafting a model is to reduce *loss*, which is the absolute difference between the actual value from ground-truth data and the model’s *prediction*. The difference is absolutized in order to remove any negative signs, as loss is concerned only with the amount between the prediction and truth and not the direction (denoted by the presence of a negative sign). Mathematically it can be represented as:
+
+$$Loss = |actual - prediction|$$
+
+The goal of an ML practitioner is to adjust the weights and bias of the model for all features to a value that results in the lowest loss. The process to do this is called *training* and weights and biases are referred to as *parameters*. Parameters are calculated during training.
+
+*Gradient Descent* is one of the most common techniques employed to train a linear regression model. Gradient descent is an iterative process that adjusts the weights and biases algorithmically to calculate the optimal values to produce the lowest loss function. While loss for a single prediction is $|actual - prediction|$, there are four loss functions that calculate the total loss of a linear regression model across all instances in it’s training. To get a fuller picture of a model’s performance, we can use either $L_1$, $L_2$, $Mean\;Squared\;Error$, or $Mean\;Absolute\;Error$.
+
+- $L_1$ loss is the sum of all the absolute values of $actual - predicted$.
+- $L_2$ loss is the sum of the squared differences between $actual - predicted$. Note that by squaring, any negative signs will be removed like absolutizing would.
+- $Mean\;Absolute\;Error$ loss is the average of $L_1$ across a set of $N$ examples.
+- $Mean\;Squared\;Error$ loss is the average of $L_2$ across a set of $N$ examples.
+
+For the purposes of this article, I won’t go into detail about these four loss functions; what is critical to note is that whatever function is used, optimizes the model slightly differently and which model is picked depends on the use-case of the model. Generally, $L_2$ and $Mean\;Squared\;Error$ pulls a model *closer* to the outliers in the dataset and $L_1$ and $Mean\;Absolute\;Error$ do not. *Outliers* are examples that are drastically outside the general vicinity of the dataset.
+
+Gradient descent follows this procedure for each iteration:
+1. Calculate new weights and bias.
+2. Determine the direction to move the model.
+3. Applies the new weights and bias in the selected direction.
+4. Repeats steps 1-3 until the loss value cannot go any lower.
+
+The point at which the loss value stabilizes and new iterations of gradient descent don’t result in a lower value is called *convergence*. When a linear regression model converges from training, it’s found the the optimal parameters for its use-case.
+
+For gradient descent to calculate new weights and bias, it uses these equations:
+
+$$new\;weight = old\;weight - (LR - slope\;of\;weight)$$
+$$new\;bias = old\;bias - (LR - slope\;of\;bias)$$
+
+Where:
+- $LR$ = the learning rate.
+
+*Learning rate* is a *hyper-parameter* set by the practitioner and in theory, can be any value. Hyper-parameters are values set by the practitioner in order to steer how the model goes on to calculate its parameters. Only parameters (weights and bias) are calculated during training and only hyper-parameters are set by the practitioner and not the model. There are three common hyper-parameters: learning rate, batch size, and epoch.
+
+Learning rate, as shown in the equations above, is the amount that is multiplied by the slopes of the weights and bias to determine the new weights and bias. An overly large learning rate can cause the model to fluctuate wildly and never result in convergence. An overly small learning rate can cause the model to take an absurdly long time to reach convergence and waste time and compute resources.
+
+Batch size is the amount of examples that a model should process before updating its weights and bias. While it would seem that going through the four step process would be best to do each time the model sees a new example, it’s not always practical given that datasets can contain tens of thousands or even millions of examples. There are two common techniques for arriving at the optimal gradient on average: Stochastic Gradient Descent (SGD) and Mini-Batch SGD. Pure SGD uses one randomly-selected example per iteration. Thus, its batch size = 1. While this works, it’s very noisy. *Noise* refers to variations during training that cause the loss to *increase* rather than decrease in an iteration. Mini-Batch SGD randomly selects a batch size $BS$ of examples between $1 < BS < N$ where $N$ is the max batch sized set by the practitioner.
+
+Epoch refers to the model having processed every example in the training set *once*. What defines an epoch depends on the number of examples and the batch size. For example, if you have 500 examples and a batch size of 100 examples, then 5 iterations will result in 1 epoch. Training typically requires the model to go through many epochs. Practitioners can set the number of epochs they want the model to train through. Generally, more epochs equals more optimized models, but leads to longer training times and cost.
+
+To visualize the progress of gradient descent in reducing the loss function over training time, we can use a *loss curve*. A loss curve plots out “Loss” on the y-axis and “Iterations” on the x-axis. As the number of iterations increase, the loss decreases. These two variables share an inverse relationship. Typically, loss curves show high loss in the early iterations, then begin to lower, and eventually start to taper off. This last phase of tapering off indicates convergence. Convergence on a loss function is shown as an upside-down plateau and a seemingly straight line. The shape of loss function’s surface are a convex with a three axis graph: loss as y-axis, weight as x-axis, and bias as z-index. With a convex as the shape of the surface, we can easily see the existence of a global minimum point (x, y, z) which in turn means that there exists a “most optimal set of parameters” where loss is at its lowest. It is critical to note that a model will never reach $loss = 0$, only the lowest possible loss given the dataset, hyper-parameters, and resources. It is also critical to note that the weights and bias that are spit out from training will never by the exact minimum for either of them, but a value that is precisely close.
+
+---
+
+There is far more that can be said about the wonderful world of linear regression. This article aims to be a very brief introduction to get a sense of the application and inner-workings of linear regression. By no means is this complete or total. Linear regression was one of the first things I learned when self-studying linear algebra one summer in high school. It immediately clicked and demystified the amazing power of machine learning. I hope it does the same for you!
+
