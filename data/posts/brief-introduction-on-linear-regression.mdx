@@ -17,7 +17,9 @@ One of the most common use cases in Calculus for this line function is the graph
 
 In a machine learning context, the equation for a single-variable Linear Regression model is:
 
-$$y' = b + w_1x_1$$
+<div class={"text-center"}>
+	$$y' = b + w_1x_1$$
+</div>
 
 Where:
 - $y’$ = label (output)
@@ -27,13 +29,17 @@ Where:
 
 For a multi-variable Linear Regression model, the equation is extended as:
 
+<div class={"text-center"}>
 $$y' = b + w_1x_1 + w_2x_2 + ... + w_Nx_N$$
+</div>
 
 Where in the number of features goes from from 1 to $N$. In the case of multiple variables, there is still one bias $b$ for the entire equation, but an individual weight $w$ for each feature present in the model.
 
 The goal of crafting a model is to reduce *loss*, which is the absolute difference between the actual value from ground-truth data and the model’s *prediction*. The difference is absolutized in order to remove any negative signs, as loss is concerned only with the amount between the prediction and truth and not the direction (denoted by the presence of a negative sign). Mathematically it can be represented as:
 
+<div class={"text-center"}>
 $$Loss = |actual - prediction|$$
+</div>
 
 The goal of an ML practitioner is to adjust the weights and bias of the model for all features to a value that results in the lowest loss. The process to do this is called *training* and weights and biases are referred to as *parameters*. Parameters are calculated during training.
 
@@ -56,9 +62,11 @@ The point at which the loss value stabilizes and new iterations of gradient desc
 
 For gradient descent to calculate new weights and bias, it uses these equations:
 
+<div class={"text-center"}>
 $$new\;weight = old\;weight - (LR - slope\;of\;weight)$$
 
 $$new\;bias = old\;bias - (LR - slope\;of\;bias)$$
+</div>
 
 Where:
 - $LR$ = the learning rate.
