@@ -22,7 +22,7 @@ export default function PostCard({
       >
         <div className={"absolute top-4 right-4 flex items-center justify-end gap-2"}>
           <StatusBadge badgeType={postPreview.category} />
-          <StatusBadge badgeType={"publishDate"} text={formatDate(postPreview.publishingDate)} />
+          {/*<StatusBadge badgeType={"publishDate"} text={formatDate(postPreview.publishingDate)} />*/}
         </div>
         <Image
           src="/images/file.png"

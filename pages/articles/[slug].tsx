@@ -120,7 +120,7 @@ export default function PostPage({
           <div className="bg-white px-10 py-12 rounded-lg drop-shadow-xl mt-12">
             <div className={"absolute top-4 right-4 gap-2 flex items-end justify-end"}>
               <StatusBadge darker badgeType={source.frontmatter.category as string} />
-              <StatusBadge darker badgeType={"publishDate"} text={formatDate(source.frontmatter.publishingDate as string)} />
+              {/*<StatusBadge darker badgeType={"publishDate"} text={formatDate(source.frontmatter.publishingDate as string)} />*/}
             </div>
             <h1 className="font-comingSoon font-bold text-5xl mb-4 mt-8 leading-normal">{title}</h1>
             <h2 className="mb-10 text-2xl font-semibold tracking-tight font-comingSoon text-gray-400">{description}</h2>
