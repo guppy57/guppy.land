@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ContainerWide from "@/components/ContainerWide";
 import { List } from "@phosphor-icons/react/dist/ssr";
-import { Kanban, CardsThree, HandWaving, ReadCvLogo } from "@phosphor-icons/react/dist/ssr";
+import { Kanban, CardsThree, HandWaving, ReadCvLogo, Panorama } from "@phosphor-icons/react/dist/ssr";
 import {
     Drawer,
     DrawerContent,
@@ -141,6 +141,20 @@ export default function Navbar(props: NavbarProps) {
                 isActive={props.activeLink === "articles"}
               />
               <NavLink
+                title="Gallery"
+                href="/gallery"
+                icon={
+                  <Panorama
+                    className="w-6 h-6"
+                    weight="bold"
+                    color={
+                      props.activeLink === "gallery" ? "rgba(38,38,38,1)" : "#B7B7B5"
+                    }
+                  />
+                }
+                isActive={props.activeLink === "gallery"}
+              />
+              <NavLink
                 title="Resume"
                 href={"/Armaan%20Gupta%20Resume.pdf"}
                 rel={"noopener noreferrer"}
@@ -223,6 +237,20 @@ export default function Navbar(props: NavbarProps) {
                       />
                     }
                     isActive={props.activeLink === "articles"}
+                  />
+                  <MobileNavLink
+                    title="Gallery"
+                    href="/gallery"
+                    icon={
+                      <Panorama
+                        className="w-10 h-10"
+                        weight="bold"
+                        color={
+                          props.activeLink === "gallery" ? "rgba(38,38,38,1)" : "#B7B7B5"
+                        }
+                      />
+                    }
+                    isActive={props.activeLink === "gallery"}
                   />
                   <MobileNavLink
                     title="Resume"
