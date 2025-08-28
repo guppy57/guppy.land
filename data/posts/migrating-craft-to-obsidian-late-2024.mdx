@@ -1,0 +1,138 @@
+---
+title: Migrating from Craft to Obsidian in Late 2024
+description: Why I made the switch to reclaim ownership of my data from a tool I used for 5+ years.
+slug: migrating-craft-to-obsidian-late-2024
+publishingDate: 2025-04-14
+author: Armaan Gupta
+tags:
+  - craft
+  - obsidian
+  - productivity
+categories:
+  - tech
+---
+### Introduction
+Ever since my Dad required me to plan out my high-school summer days by the hour in a spread sheet (which I later learned was called “time blocking”), I have been interested in the saturated, largely-useless world of “productivity”. I bounced from tool to tool, task manager to task manager always succumbing to the Shiny Egg Syndrome. However, since coming to the Mac platform in 2020, I found a staple of tools that stuck with me for years. One of which was Craft for documents and notes.
+
+It’s beautiful, it’s natively built on MacOS, and its formatting options help even the most un-artistic people create beautiful documents. There is no wonder why Craft has won numerous Apple Design Awards. I used this app daily for many years, eagerly awaiting each update. Sometime in 2024 though, I started to get a sense of existential dread that kept creeping up when my mind would be still… usually when I was driving. It would go something like this:
+
+> “What would you do if tomorrow China nuked an AWS data center? Would you be okay with that? What would you do if [Craft] didn’t have replicas? What if tomorrow all your notes were gone? What if tomorrow, the entire internet went down?”
+
+China deciding to start nuking AWS data centers *is* unlikely and there is a near definite probability the internet will be online tomorrow, yet the concern still stands: what would happen if Craft, or any other service, suddenly lost all of your data with no prospects of recovery? All of the poetry I wrote, documents I carved, essays I devised, and general ramblings I scribbled were mine, but not *completely* mine. They belonged to me given:
+
+1) Craft doesn’t blow up,
+2) Craft doesn’t lock me out unknowingly for some reason,
+3) the Government doesn’t compel Craft to lock me out,
+4) Craft doesn’t shut down without any warning, and
+5) Craft doesn’t suddenly change their data format, remove a feature I depend on, or completely change their policies.
+
+If I was this dependent on a company for something as simple as my writing, an activity humans have done since they began to think, then I didn’t really own my artifacts or my process. Not unless I could keep all my documents off line, all the time, in a format that can be read without a parser/formatter.
+
+I learned of Obsidian from many years of having my ear to the productivity space. Given my concerns, Obsidian was the perfect alternative. I had tried to switch before my existentialism, but never had the motivation to fully learn, adapt, and then migrate all of my writing from Craft - which had been largely perfect for me. Then again, nuclear war makes for great motivation!
+
+### What I love about Obsidian
+
+#### Graph View
+If you happen to peruse the Obsidian subreddit, you’ll find countless posts of users sharing their brain-like graph views just for the comment section to ring of criticism. Most people see the Graph View as a gimmick only serving to show off how “big” their second brain is. At least in this context, size does matter.
+
+<img src="/images/articles/migrating-craft-to-obsidian-late-2024/Screenshot 2025-08-28 at 8.36.29 AM.png" alt="Screenshot 2025-08-28 at 8.36.29 AM.png" className="w-full h-auto" />
+Massive graph views are pretty useless and serve solely as eye candy. But, when using it for a small set of files, it can be an incredibly useful for navigating across links and for visualizing highly-connected notes. I have a folder in my vault called “Dream Inventory”. It’s named after a concept I got from Leonardo Lospennato in his book on managing multiple interests called, “Leonardo Lospennato - The Da Vinci Curse - 2012-10-01|The Da Vinci Curse”. In this folder, I create a file for each project, public or private hobby, job opportunity, career idea, etc. Each file then gets a set of ratings based on how interested I am in pursuing it, how talented I am to take it on, and how monetizable it is. These criteria then decide if I label that “Dream” as an Opportunity, Private Hobby, Public Hobby, Project, or Trash.
+
+I used Leonardo’s Dream Inventory concept as a starting point and added a few things to it to better suit my workflow. One of these was using Obsidian’s back linking to relate all of the different “Dreams” together. I realized that not all of the different projects, hobbies, and jobs live in isolation and that engaging in X often meant partial or full engagement in a related Y. For example, pursuing my self-study in Philosophy also engages “Become a Writer”. If I chose to pursue a YouTube channel to discuss Philosophy, it would also engage “Script Writing” and “Film-making”.
+
+The graph view in this context is a powerful visualization tool to see how all my Dreams connect and show me those intersections where I find a lot of connections coming together. This helps me see what Dream I can pursue that engages the most other Dreams.
+
+<img src="/images/articles/migrating-craft-to-obsidian-late-2024/Screenshot 2025-08-28 at 8.35.40 AM.png" alt="Screenshot 2025-08-28 at 8.35.40 AM.png" className="w-full h-auto" />
+
+#### Working with my files outside of Obsidian
+Because Obsidian reads and writes files to a folder on my hard drive, I have complete access to my data. One of the best outcomes of this is being able to take the same files and open them in other apps like Visual Studio Code or Ulysesses.
+
+I’m even working on my own desktop application called GuppyBrain Gardener to systematically review my Obsidian notes with Vim-style keybindings to quickly review notes, add tags, manage categories, edit aliases, and mark files “done”. Plus, I’m building my own RAG system with GPT-OSS to be able to see tag suggestions and related notes to improve interconnectedness. This would not be as easily possible in Craft where I’d have to access everything through an API, assuming their API can do exactly what I need, and work with content in an uncommon format lacking in available public libraries.
+
+#### Obsidian Sync
+Obsidian’s commercial sync service is fast, cheap, and transparent. It allows me to support the developers and ensure my files are everywhere, quickly. Craft’s sync worked automatically as well, but it was black-boxed with no logs. I often ran into sync issues with no way to fix the problem due to a lack of transparency. With Obsidian, you can view the Sync Logs anytime and see exactly what’s happening with your files across machines.
+
+<img src="/images/articles/migrating-craft-to-obsidian-late-2024/Screenshot 2025-08-28 at 8.34.46 AM.png" alt="Screenshot 2025-08-28 at 8.34.46 AM.png" className="w-full h-auto" />
+
+#### Vim Mode
+In April 2024, I attended a pitch competition in Canada for my previous startup, Kreative DocuVet. The morning of the third day, I got my first gout flareup in my left ankle! I couldn’t walk and was constrained to my hotel room until I left for America. With all that time, I decided to buckle down and actually learn VIM motions as a software engineer. Couple of ice packs and four hours later, I fell in love with what VIM motions could do and how they’d make me feel as I blaze up and down my code.
+
+Bringing that same muscle-memory into Obsidian has been really fun, extremely productive, and served as another opportunity to keep practicing and improving on VIM motions.
+
+#### Theming and Custom Fonts
+Craft is by far the most beautiful note-taking app I have ever used and its user experience is phenomenal. As long as Obsidian is an Electron application and not a native Mac App, it will never look as good as Craft. However, compared to all the other note-taking applications out there, especially desktop-only solutions, Obsidian has the potential to be beautiful. As for my setup, I think it is.
+
+<img src="/images/articles/migrating-craft-to-obsidian-late-2024/Screenshot 2025-08-28 at 8.37.41 AM.png" alt="Screenshot 2025-08-28 at 8.37.41 AM.png" className="w-full h-auto" />
+
+I’m a font nut and being able to set different font families for the interface, text, and monospace text is delightful. Currently, I’m using SF Pro Display for the interface and Maple Mono for the text. Obsidian also gives developers and users almost all control over the interface through themes and custom CSS snippets. I’ve written around 10+ snippets to tweak little things here and there and I’ve created a custom CSS class for my Bible notes which overrides the background color, transforms the verse numbers, and changes the font to serif.
+
+<img src="/images/articles/migrating-craft-to-obsidian-late-2024/Screenshot 2025-08-28 at 8.38.09 AM.png" alt="Screenshot 2025-08-28 at 8.38.09 AM.png" className="w-full h-auto" />
+
+Even with Craft’s polished out-of-the-box experience, the openness Obsidian provides is more enjoyable for someone of my temperament: someone willing to tinker a bit. Having the freedom to fix issues you see, create new interfaces for different types of notes, and make your thinking tool match your aesthetic will not be something I give up.
+
+### What I miss about Craft
+
+#### Native Mac App and Design
+What held me back from switching to Obsidian pre-existential crisis was it’s design. Stock obsidian isn’t much to look at, especially coming from the Apple design award winner Craft. I’m still a member of the Craft subreddit and my heart twinkles just a bit when I get a glimpse of the official Craft team’s screenshots of the latest version.
+
+#### One-Click Document Sharing
+Within any document in Craft, there’d be a button in the top right corner to share it with others. Any document can be shared as:
+1. Read only link
+2. Read only link with comments
+3. Link to allow collaboration
+4. Password protected links
+
+Any link created for sharing in Craft also came with Analytics so you could see how many people viewed your document and allowed you to revoke access through the link at anytime. This was my favorite part of Craft and the most difficult to let go when switching to Obsidian. Because Obsidian is a text editor for local files, internet-based sharing is difficult.
+
+This feature was so coveted for me that I am working on a plugin + application to bring this functionality to Obsidian: Obsidian Single Page Publishing.
+
+### What to watch out for if you make the switch
+
+#### Sub pages don't get exported as separate markdown files
+Craft allows you to embed pages inside of documents. The documents then act sort of like a “visual folder”. This would make you think that all of the sub-pages, and subsequently the sub-pages of sub-pages, would be exported as individual markdown files, but you’d be wrong. The content of all the sub-pages in a document export in the same markdown file as the document.
+
+So, if you know that you have certain sub-pages that must be their own individual files, take them out before starting the export process.
+
+#### Attachments will get exported as files
+This was probably one of the smoothest parts of the export process. Craft will take all the images, pdfs, and other attachments and give you a local copy in a dedicated folder in your export bundle. All your exported markdown files will then use relative paths referencing this “attachments” folder. The best part is that you can then move this directly to your new “Attachments” folder in Obsidian, allowing you to quickly have all your attachments rendering out of the box.
+
+#### Backlinks will be exported as Craft links which will require manual work
+This is one of the worst challenges with exporting from Craft. Any backlinks in your exported Craft notes will be exported as **URL hyperlinks to Craft documents** that will take you to the Craft app or the web version of Craft. This means that you will need to manually go through all your notes and add Obsidian-backlinks using “ ” for the linked files. Luckily for me, I didn’t use Craft’s back linking feature much so this didn’t require significant time from me, but do keep this in mind when migrating.
+
+#### Highlights will be exported as " :: :: " instead of Obsidian's " == == "
+This is a quirk I noticed with the Craft export, but can be easily fixed with a global find-all/replace-all using a text editor like Visual Studio Code.
+
+#### Almost everything will have an extra line break when exporting to markdown which will require you to manually go in and remove.
+Another quirk I found was that what looked like one line break in Craft exported as two in Markdown. This meant that text like this:
+
+```
+this is a line
+this is another line
+
+heres a line, with a line break
+```
+
+Would end up exported like this:
+
+```
+this is a line
+
+this is another line
+
+
+heres a line, with a line break
+```
+
+I had to go through every file to remove this extra line breaks and was absolutely mind-numbing. Between you and me, there are still tens of files I haven’t cleaned up yet in this regard. My policy with this challenge was that whenever I run into a file with extra line breaks, I’ll clean them up then.
+
+#### Tables in Craft will turn into Markdown tables, but Collections won't
+Conveintely, any Craft tables in your documents will turn into Markdown tables that render perfectly in Obsidian. However, any Collections that you have in documents won’t turn into neat markdown tables with backlinks to the documents in the collection. **Do note that the Collections feature has changed since the time of my migration and there may be new functionality upon exporting**.
+
+### Conclusion
+Having everything maintained as plain-text with a common markdown language means that I could leave the app and still have my data. It’s great to be able to open up the same files from Obsidian in apps like Ulysses or Agenda and even be able to build my own apps to work with my files.
+
+Migrating years of notes from Craft took me a few weeks, but it’s definitely possible with preparation and time. If you enjoy having your data stored on your machine and want a powerful, customizable, and free tool for thinking, documenting, and writing then switching to Obsidian will be fruitful. With proper maintenance and backups on my part, I genuinely feel that my writing will last forever.
+
+---
+
+Need help making the switch to Obsidian? Drop a link [armaan@guppy.im](mailto:armaan@guppy.im) and I’ll do my best to help.
