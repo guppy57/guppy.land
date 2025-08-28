@@ -24,7 +24,7 @@ export default function Articles({
   const filteredArticles = useMemo(() => {
     const postPreviewsFiltered = postPreviews.filter((preview: PostPreview) => {
       if (tag === "all") return true;
-      return preview.category.includes(tag);
+      return preview.categories.includes(tag);
     });
 
     const col1 = postPreviewsFiltered.slice(
@@ -210,6 +210,5 @@ export async function getStaticProps() {
       count: postPreviews.length,
       postPreviews: postPreviewsSorted,
     },
-    revalidate: 60, // enable ISR
   };
 }

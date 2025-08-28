@@ -433,6 +433,5 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       kreations,
     },
-    revalidate: 60, // Revalidate every minute
   };
 };

@@ -3,5 +3,5 @@ export type PostPreview = {
   description: string;
   slug: string;
   publishingDate: string;
-  category: string;
+  categories: string[];
 };

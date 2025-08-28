@@ -26,7 +26,7 @@ export default function PostPage({
   const title = source.frontmatter.title as string;
   const description = source.frontmatter.description as string || "";
   const publishingDate = source.frontmatter.publishingDate as string;
-  const category = source.frontmatter.category as string || "Article";
+  const categories = source.frontmatter.categories as string[] || [];
   const author = (source.frontmatter.author as string) || "Armaan Gupta";
   const tags = (source.frontmatter.tags as string[]) || [];
   const featuredImage = (source.frontmatter.featuredImage as string);
@@ -59,9 +59,10 @@ export default function PostPage({
       "@id": canonicalUrl
     },
     "keywords": tags.join(", "),
-    "articleSection": category
+    "articleSection": categories
   };
   
+  // @ts-ignore
   return (
     <div className="relative min-h-screen bg-[#F7F7F2]">
       <Head>
@@ -71,7 +72,9 @@ export default function PostPage({
         <meta property="article:published_time" content={publishingDate} />
         <meta property="article:modified_time" content={publishingDate} />
         <meta property="article:author" content={author} />
-        <meta property="article:section" content={category} />
+        {categories.map((category: string) => (
+          <meta property="article:section" content={category} />
+        ))}
         {tags.map((tag, index) => (
           <meta key={index} property="article:tag" content={tag} />
         ))}
@@ -102,7 +105,7 @@ export default function PostPage({
             publishedTime: publishingDate,
             modifiedTime: publishingDate,
             authors: [author],
-            section: category,
+            section: categories[0],
             tags: tags,
           },
         }}
@@ -120,7 +123,9 @@ export default function PostPage({
           </Link>
           <div className="bg-white px-10 py-12 rounded-lg drop-shadow-xl mt-12">
             <div className={"absolute top-4 right-4 gap-2 flex items-end justify-end"}>
-              <StatusBadge darker badgeType={source.frontmatter.category as string} />
+              {categories.map((category: string) => (
+                <StatusBadge darker badgeType={category as string} />
+              ))}
               {/*<StatusBadge darker badgeType={"publishDate"} text={formatDate(source.frontmatter.publishingDate as string)} />*/}
             </div>
             <h1 className="font-comingSoon font-bold text-5xl mb-4 mt-8 leading-normal">{title}</h1>

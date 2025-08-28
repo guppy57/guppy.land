@@ -23,7 +23,7 @@ export default function StatusBadge(props: IStatusBadgeProps) {
   let containerStyle =
     "text-xs font-semibold text-black px-2 py-1 rounded-full font-departureMono tracking-tighter bg-white";
 
-  containerStyle += props.darker ? " border border-gray-500/38" : " border border-gray-200/50";
+  containerStyle += props.darker ? " bg-black/5 border border-gray-500/38" : " border border-gray-200/50";
 
   if (props.badgeType === "publishDate") {
     return (
