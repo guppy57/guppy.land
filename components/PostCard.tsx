@@ -15,7 +15,7 @@ export default function PostCard({
     <Link href={postPreview.slug}>
       <div
         className={cn(
-          "cursor-pointer relative py-10 px-8 rounded-xl bg-[#eeeee2] transition-all duration-200 hover:shadow-lg hover:scale-[102%] hover:bg-yellow-100/85",
+          "cursor-pointer relative py-8 sm:py-10 px-6 sm:px-8 rounded-xl bg-[#eeeee2] transition-all duration-200 hover:shadow-lg hover:scale-[102%] hover:bg-yellow-100/85",
           count % 2 === 0 ? "hover:rotate-1" : "hover:-rotate-1"
         )}
       >

@@ -7,7 +7,7 @@ const articleTags: ITag[] = [
 	{ title: "Philosophy", value: "philosophy" },
 	{ title: "Christianity", value: "christianity"},
 	{ title: "Religion", value: "religion"},
-	{ title: "Artificial Intelligence", value: "artificial-intelligence"},
+	{ title: "AI", value: "artificial-intelligence"},
 ];
 
 export default articleTags;
