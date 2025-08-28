@@ -11,6 +11,7 @@ import {
   HandsPraying,
   CodesandboxLogo,
 } from "@phosphor-icons/react/dist/ssr";
+import { Binary } from '@phosphor-icons/react';
 
 interface IStatusBadgeProps {
   badgeType: string;
@@ -37,8 +38,17 @@ export default function StatusBadge(props: IStatusBadgeProps) {
   if (props.badgeType === "artificial-intelligence") {
     return (
       <span className={cn(containerStyle, props.className)}>
-        <CodesandboxLogo weight="bold" className="h-4 w-4 inline-block mr-0.5" />
+        <Binary weight="bold" className="h-4 w-4 inline-block mr-0.5" />
         ai
+      </span>
+    );
+  }
+
+  if (props.badgeType === "tech") {
+    return (
+      <span className={cn(containerStyle, props.className)}>
+        <CodesandboxLogo weight="bold" className="h-4 w-4 inline-block mr-0.5" />
+        tech
       </span>
     );
   }
