@@ -2,6 +2,8 @@ import PostCard from "@/components/PostCard";
 import { InferGetStaticPropsType } from "next";
 import fs from "fs";
 import { serialize } from "next-mdx-remote/serialize";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import path from "path";
 import { PostPreview } from "@/types/posts";
 import Navbar from "@/components/Navbar";
@@ -189,6 +191,10 @@ export async function getStaticProps() {
     // and parse the frontmatter
     const serializedPost = await serialize(postFile, {
       parseFrontmatter: true,
+      mdxOptions: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+      },
     });
 
     postPreviews.push({
