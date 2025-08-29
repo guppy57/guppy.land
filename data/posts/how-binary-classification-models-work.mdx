@@ -1,0 +1,94 @@
+---
+title: How Binary Classification Models Work
+description: Introduction to binary classification models and how the build on top of logistic regression.
+slug: how-binary-classification-models-work
+publishingDate: 2025-08-23
+author: Armaan Gupta
+tags:
+  - ai
+  - machine learning
+categories:
+  - ai
+---
+Binary Classification is a classic machine learning problem wherein the model predicts the likelihood that an input is A or B. A and B represent the different classes for the classification problem. One of these (either A or B) represent the positive class and the other, the negative class. In the classic example of a spam email detection model, the positive class would be “IS SPAM” and the negative class would be “IS NOT SPAM”. Binary classification models output a probability and not the categorical labels like “IS SPAM” and “IS NOT SPAM”. Thus, users of these sorts of models can either use the model prediction as-is or choose to further categorize the probabilistic prediction into one of the two categories. When training a binary classification model, there are two types of datasets: balanced and unbalanced. Balanced means the actual positives are close in count to the total negatives int the dataset: 50 examples of spam emails and 50 examples of safe emails. Imbalanced means the actual positives and negatives are not close to equal to each other: 90 examples of spam emails and 10 examples of safe emails. This is a high-level overview and over the next few paragraphs, we’ll explore this model type in more detail.
+
+Binary classification models work by adding an extra step to a Logistic regression and why it exists|Logistic Regression model. Logistic Regression is a statistical technique to produce a probability from a Brief introduction on Linear Regression|Linear Regression equation. And, Linear Regression is a statistical technique that plots out inputs $x_1$ → $x_N$ and their subsequent outputs $y’$ and creates a Line of Best Fit wherein the line has the least distance between all the plotted points combined. In a machine learning context, this Line of Best Fit represents a “model” and can be used to make predictions for new inputs. Logistic regression takes the continuous value output of a linear regression and applies a logistic function on it, also known as a ‘sigmoid function’. Hence the name “logistic regression”. The purpose of this operation is to convert continuous values into a probability, where $0 < yi < 1$. Due to the s-shape nature of a sigmoid function, the value of the output will never reach exactly 0 or exactly 1, but will always be in between. The mental model to use when thinking about the relationship between these three machine learning and statistical techniques is:
+
+$$binary\;classification(logistic(linear(x)))$$
+
+The output for the linear regression function is the input for the logistic regression function, which then serves as “input” for the binary classification model.
+
+The reason that input is in quotes is because unlike linear/logistic regression, binary classification isn’t a function on it’s own. It isn’t an equation or operation. Instead, binary classification leverages a **classification threshold** to assign probabilities above that threshold to the positive class and probabilities below that threshold to the negative class. Classification thresholds are probabilities themselves. For the spam email classifier example, you might assign a classification threshold of 90%. What this would mean is that if your logistic regression function produces an output of 0.90 or more, the input (email) is considered spam. If the output is below 0.90, then the email is considered not spam. The output of the logistic regression function is the model’s confidence in the input being the positive class. So when the model spits out 0.01, it’s essentially saying, “I think there is a 1% chance that this email is spam”. It is then the job of the ML practitioner and the stakeholders employing this model to determine at what “percent chance” will they tell the end user (i.e. email account holders) that the email is spam or to move the email over to the “spam folder”. The classification threshold is determined completely by the business case of the model and isn’t a value that the model can spit out. If the email app developers are more worried about spam emails going to the inbox, they may assign a lower classification threshold so the model doesn’t have to be as confident for an email to go to the spam folder. If they are more worried about legitimate emails going to the spam folder, they may assign a higher classification threshold so the model has to be more confident that an email is spam.
+
+## Confusion Matrix
+Because a binary classification model uses probabilities, these outputs (also known as ‘probability scores’) may or may not reflect reality. Therefore, ML practitioners make us of the **confusion matrix** that represents the four possible outcomes for all classification outputs:
+
+<table className="w-full border-collapse border border-gray-300 my-4">
+  <thead>
+    <tr className="bg-gray-100">
+      <th className="border border-gray-300 px-4 py-2"></th>
+      <th className="border border-gray-300 px-4 py-2 font-semibold">Actual Positive</th>
+      <th className="border border-gray-300 px-4 py-2 font-semibold">Actual Negative</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td className="border border-gray-300 px-4 py-2 font-semibold">Predicted Positive</td>
+      <td className="border border-gray-300 px-4 py-2">**True Positive (TP)**</td>
+      <td className="border border-gray-300 px-4 py-2">**False Positive (FP)**</td>
+    </tr>
+    <tr>
+      <td className="border border-gray-300 px-4 py-2 font-semibold">Predicted Negative</td>
+      <td className="border border-gray-300 px-4 py-2">**False Negative (FN)**</td>
+      <td className="border border-gray-300 px-4 py-2">**True Negative (TN)**</td>
+    </tr>
+  </tbody>
+</table>
+
+**Definitions:**
+- **True Positive (TP)**: The model predicts the positive class and reality reflects this
+- **False Positive (FP)**: The model predicts the positive class and reality denies this  
+- **False Negative (FN)**: The model predicts the negative class and reality denies this
+- **True Negative (TN)**: The model predicts the negative class and reality reflects this
+
+Over a count of $N$ examples, each output can be categorized into one of these four boxes. Thus, the sum of the count for each box equals $N$. The totals of each row equal all the predicted positives and negatives. The totals of each column each column equal all the real positives and negatives.
+
+If we take the spam detection model example again, $TP$ would be actual spam emails that the model says are spam. $FP$ would be safe emails that the model says are spam. $FN$ would be spam emails the model says are safe. $TN$ would be safe emails that the models says are safe. The general relationships of these four metrics are that as the classification threshold *increases* both True Positives ($TP$) and False Positives ($FP$) *decrease*; both True Negatives ($TN$) and False Negatives ($FN$) *increase*. These values alone aren’t useful and optimizing for one of them over the other can cause unintended consequences, especially when considering that machine learning models are not perfect and False Negatives and False Positives are inevitable to some degree. As such, these four values are combined to calculate metrics: Accuracy, Recall, False Positive Rate, and Precision. We can then adjust the classification threshold to optimize for one of these metrics depending on the use case.
+
+### Accuracy
+Accuracy is the proportion of all classifications that were correct, whether positive or negative.
+
+<div className={"text-center"}>
+$$Accuracy = \frac{Correct\;Classifications}{Total\;Classifications}=\frac{TP + TN}{TP + TN + FP + FN}$$
+</div>
+
+Because thie metric uses all four values from the confusion matrix, it’s a great metric to evaluate balanced datasets and is often used as the default evaluation metric for general models applied to general tasks. However, it’s effectiveness is weakened with imbalanced datasets.
+
+### Recall, or True Positive Rate
+Recall or True Positive Rate (TPR) is the proportion of all actual positives that were correctly classified as positives.
+
+<div className={"text-center"}>
+$$Recall = \frac{correctly\;classified\;actual\;positives}{all\;actual\;positives}=\frac{TP}{TP + FN}$$
+</div>
+
+Another name for recall/TPR is *probability of detection* and this metric answers the question, “how well did the model do at classifying positives specifically?”. Recall does better than Accuracy when you have an imbalanced dataset and where false negatives are more costly than false positives. For example, in disease prevention, it is more expensive to have an illness unidentified than to over identify and continue investigating.
+
+### False Positive Rate
+False Positive Rate (FPR) is the proportion of all actual negatives that were classified incorrectly as positives. This metric is also known as *probability of false alarm*.
+
+<div className={"text-center"}>
+$$FPR = \frac{incorrectly\;classified\;actual\;negatives}{all\;actual\;negatives}=\frac{FP}{FP + TN}$$
+</div>
+
+FPR is less useful when you have an imbalanced dataset where the number of actual negatives is very, very low (i.e. 1-2 examples total). Unlike TPR, if false negatives are more costly than false positives than this would be a good metric to optimize for.
+
+### Precision
+Precision is the proportion of all the model’s positive classifications that are actually positive.
+
+<div className={"text-center"}>
+	$$Precision = \frac{correctly\;classified\;actual\;positives}{everything\;classified\;as\;positive}=\frac{TP}{TP + FP}$$
+</div>
+
+Precision is less useful when you have an imbalanced dataset where the number of actual positives is very, very low (i.e. 1-2 examples total). This metric optimizes for a lower false positive rate and should be used when false positives are more costly than false negatives. Recall and Precision often have an *inverse relationship*: improving one, worsens the other.
+
+Binary Classification is certainly one of the more useful and easier to grasp machine learning problems. It can be used in combination with other systems and multiple binary classifiers in concert can produce **multi-class classification models**.
