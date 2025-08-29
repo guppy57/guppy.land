@@ -35,7 +35,7 @@ export default function StatusBadge(props: IStatusBadgeProps) {
     ); 
   }
 
-  if (props.badgeType === "artificial-intelligence") {
+  if (props.badgeType === "ai") {
     return (
       <span className={cn(containerStyle, props.className)}>
         <Binary weight="bold" className="h-4 w-4 inline-block mr-0.5" />
