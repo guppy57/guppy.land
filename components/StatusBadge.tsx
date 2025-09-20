@@ -10,6 +10,7 @@ import {
   Cross,
   HandsPraying,
   CodesandboxLogo,
+  Gavel,
 } from "@phosphor-icons/react/dist/ssr";
 import { Binary } from '@phosphor-icons/react';
 
@@ -40,6 +41,15 @@ export default function StatusBadge(props: IStatusBadgeProps) {
       <span className={cn(containerStyle, props.className)}>
         <Binary weight="bold" className="h-4 w-4 inline-block mr-0.5" />
         ai
+      </span>
+    );
+  }
+
+  if (props.badgeType === "policy") {
+    return (
+      <span className={cn(containerStyle, props.className)}>
+        <Gavel weight={"bold"} className={"h4 w-4 inline-block mr-0.5"} />
+        policy
       </span>
     );
   }

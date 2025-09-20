@@ -8,7 +8,8 @@ const articleTags: ITag[] = [
 	{ title: "Christianity", value: "christianity"},
 	{ title: "Religion", value: "religion"},
 	{ title: "AI", value: "ai"},
-	{ title: "Tech", value: "tech"}
+	{ title: "Tech", value: "tech"},
+	{ title: "Policy", value: "policy"}
 ];
 
 export default articleTags;
